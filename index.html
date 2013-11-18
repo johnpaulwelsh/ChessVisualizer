@@ -40,8 +40,8 @@
 			var container, stats;
 
 			var camera, scene, renderer;
-                        var board;
-                        var pawn, rook, knight, bishop, queen, king;
+            var board;
+            var pawn, rook, knight, bishop, queen, king;
 
 			var mouseX = 0, mouseY = 0;
 
@@ -50,7 +50,6 @@
 
 			init();
 			animate();
-
 
 			function init() {
 
@@ -72,7 +71,8 @@
 				scene.add( directionalLight );
 
 				// model
-                board = new THREE.Object3D(); // starts out as an empty object
+				
+				board = new THREE.Object3D(); // starts out as an empty object
 
 				var loader = new THREE.OBJMTLLoader();
 				loader.load( 'objects/frame.obj', 'objects/frame.mtl', function ( object ) {
@@ -104,26 +104,20 @@
             }
 
 			function onWindowResize() {
-
 				windowHalfX = window.innerWidth / 2;
 				windowHalfY = window.innerHeight / 2;
-
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
-
 				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
 
+			function animate() {
+				// do stuff
 			}
 
 			function render() {
-
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-
 				camera.lookAt( scene.position );
-
 				renderer.render( scene, camera );
-
 			}
 
 		</script>
