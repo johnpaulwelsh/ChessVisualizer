@@ -1,130 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>Team01's Chess Visualizer, Fall 2013</title>
-		<style>
-			canvas { width: 100%; height: 100% }
-		</style>
-	</head>
-	<body>
-		<script src="js/Three.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <title>Team01's Chess Visualizer, Fall 2013</title>
+        <style>
+            canvas { width: 100%; height: 100% }
+        </style>
+    </head>
+    <body>
+        <script src="js/Three.js"></script>
 
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJMTLLoader.js"></script>
-		
-		<script src="js/Detector.js"></script>
-		<script src="js/stats.min.js"></script>
-		
-		<script>
+        <script src="js/loaders/MTLLoader.js"></script>
+        <script src="js/loaders/OBJMTLLoader.js"></script>
 
-			var container, stats;
-			var camera, scene, renderer;
+        <script src="js/Detector.js"></script>
+        <script src="js/stats.min.js"></script>
+        
+        <script>
 
-			var game, board;
-			var king, queen, bishop, knight, rook, pawn;
+            var container, stats;
+            var camera, scene, renderer;
 
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+            var game, board;
+            var king, queen, bishop, knight, rook, pawn;
 
-			init();
+            var windowHalfX = window.innerWidth / 2;
+            var windowHalfY = window.innerHeight / 2;
 
-			function init() {
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+            init();
 
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-				camera.position.z = 60;
-				camera.position.y = 70;
+            function init() {
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
 
-				scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                camera.position.z = 60;
+                camera.position.y = 70;
 
-				var ambient = new THREE.AmbientLight( 0x101010 ); // color in hex (gray)
-				scene.add( ambient );
+                scene = new THREE.Scene();
 
-				var directionalLight = new THREE.DirectionalLight( 0xffeedd ); // light orange
-				directionalLight.position.set( 0.5, 2, 1 ).normalize(); // position(these parameters) - origin = direction
-				scene.add( directionalLight );
+                var ambient = new THREE.AmbientLight( 0x101010 ); // color in hex (gray)
+                scene.add( ambient );
 
-				game = new THREE.Object3D();
+                var directionalLight = new THREE.DirectionalLight( 0xffeedd ); // light orange
+                directionalLight.position.set( 0.5, 2, 1 ).normalize(); // position(these parameters) - origin = direction
+                scene.add( directionalLight );
 
-				var loader = new THREE.OBJMTLLoader();
-				loader.load( 'objects/chessboardwhitenomarblejoin.obj', 'objects/chessboardwhitenomarblejoin.mtl', function ( object ) {
-    				object.scale.x = 20;
-    				object.scale.y = 20;
-    				object.scale.z = 20;
-                    
-                    board = object;
-					game.add( board );
-                } );
+                game = new THREE.Object3D();
 
-				loader.load ( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
-					object.scale.x = 4;
-					object.scale.y = 4;
-					object.scale.z = 4;
-
-					object.translateY( 3 );
-
-					pawn = object;
-					game.add( pawn );
+                var loader = new THREE.OBJMTLLoader();
+                loader.load( 'objects/chessboardwhitenomarblejoin.obj', 'objects/chessboardwhitenomarblejoin.mtl', function ( object ) {
+                    object.scale.x = 20;
+                    object.scale.y = 20;
+                    object.scale.z = 20;
+    
+    				board = object;
+                    game.add( board );
 				} );
 
-                scene.add( game );
+                loader.load ( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
+                    object.scale.x = 4;
+                    object.scale.y = 4;
+                    object.scale.z = 4;
 
-       			renderer = new THREE.WebGLRenderer();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
+                    object.translateY( 3 );
 
-   				window.addEventListener( 'resize', onWindowResize, false );
-			}
-			
-			//pawn.translateX( -77 );
-			//pawn.translateZ( 22 );
+                    pawn = object;
+                    game.add( pawn );
+                } );
 
-			function cloneObj ( obj ) {
-                var i, cpy = new THREE.Object3D();
-                for (var i in obj.children) {
-                    cpy.add(
-                        new THREE.Mesh(obj.children[i].geometry)
-                    );
-                }
-                return cpy;
+				scene.add( game );
+
+               	renderer = new THREE.WebGLRenderer();
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                document.body.appendChild( renderer.domElement );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
             }
 
-            function cloneObjMtl ( objmtl ) {
-                var i, cpy = new THREE.Object3D();
-                for (var i in objmtl.children) {
-                    cpy.add(
-                        new THREE.Mesh(objmtl.children[i].geometry,
-                        objmtl.children[i].material)
-                    );
-                }
-                return cpy;
+            //var geometry = new THREE.CubeGeometry(1,1,1);
+            
+            //var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+            
+            //var cube = new THREE.Mesh( geometry, material );
+                
+            //scene.add( cube );
+
+            //pawn.translateX( -77 );
+            //pawn.translateZ( 22 );
+
+
+            function onWindowResize() {
+
+                windowHalfX = window.innerWidth / 2;
+                windowHalfY = window.innerHeight / 2;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
             }
 
-			function onWindowResize() {
+            function render() {
+                requestAnimationFrame(render);
 
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
+                camera.lookAt( scene.position );
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+                renderer.render(scene, camera);
+            }
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+            render();
 
-			}
-
-			function render() {
-				requestAnimationFrame(render);
-
-				camera.lookAt( scene.position );
-
-				renderer.render(scene, camera);
-			}
-
-			render();
-
-		</script>
-	</body>
+        </script>
+    </body>
 </html>
