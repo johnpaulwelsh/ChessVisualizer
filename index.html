@@ -53,25 +53,9 @@
                 game = new THREE.Object3D();
 
                 var loader = new THREE.OBJMTLLoader();
-                loader.load( 'objects/chessboardwhitenomarblejoin.obj', 'objects/chessboardwhitenomarblejoin.mtl', function ( object ) {
-                    object.scale.x = 20;
-                    object.scale.y = 20;
-                    object.scale.z = 20;
-    
-    				board = object;
-                    game.add( board );
-				} );
-
-                loader.load ( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
-                    object.scale.x = 4;
-                    object.scale.y = 4;
-                    object.scale.z = 4;
-
-                    object.translateY( 3 );
-
-                    pawn = object;
-                    game.add( pawn );
-                } );
+                
+                var board = new Board( loader );
+                var pawn = new Pawn( loader );
 
 				scene.add( game );
 
@@ -82,14 +66,6 @@
                 window.addEventListener( 'resize', onWindowResize, false );
 
             }
-
-            //var geometry = new THREE.CubeGeometry(1,1,1);
-            
-            //var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-            
-            //var cube = new THREE.Mesh( geometry, material );
-                
-            //scene.add( cube );
 
             //pawn.translateX( -77 );
             //pawn.translateZ( 22 );
