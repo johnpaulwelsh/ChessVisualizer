@@ -9,7 +9,8 @@
         </style>
     </head>
     <body>
-        <script src="js/Three.js"></script>
+        <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script> 
+        <!--<script src="lib/Three.js"></script>-->
 
         <script src="lib/loaders/MTLLoader.js"></script>
         <script src="lib/loaders/OBJMTLLoader.js"></script>
@@ -18,10 +19,8 @@
         <script src="lib/stats.min.js"></script>
 
         <script src="js/board.js"></script>
-        <script src="js/pawn.js"></script>
         
         <script>
-
             var container, stats;
             var camera, scene, renderer;
 
@@ -55,7 +54,6 @@
                 var loader = new THREE.OBJMTLLoader();
                 
                 var board = new Board( loader );
-                var pawn = new Pawn( loader );
 
 				scene.add( game );
 

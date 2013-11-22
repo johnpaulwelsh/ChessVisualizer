@@ -4,7 +4,7 @@ var Board = function( loader ) {
 	    object.scale.y = 20;
 	    object.scale.z = 20;
 
-	    loader.load( 'whitepawn.obj', 'whitepawn.mtl', function ( object ) {
+	    loader.load( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
 	    	object.scale.x = 4;
 	        object.scale.y = 4;
 	        object.scale.z = 4;
