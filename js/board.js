@@ -18,6 +18,20 @@ var Board = function( loader ) {
 
 	        	object.translateY( 30 );
 
+	        	loader.load( 'objects/blackpawn.obj', 'objects/blackpawn.mtl', function ( object ) {
+	        		object.scale.x = 3;
+	        		object.scale.y = 3;
+	        		object.scale.z = 3;
+
+	        		object.translateY( 3 );
+
+	        		bpawn = object;
+	        		game.add( bpawn );
+
+	        		bpawn.translateX( -50 );
+	        		bpawn.translateZ( 10 );
+	        	});
+
 	        	rook = object;
 	        	game.add( rook );
 
