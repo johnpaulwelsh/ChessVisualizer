@@ -1,6 +1,6 @@
-# Blender v2.68 (sub 0) OBJ File: 'whiteking.blend'
+# Blender v2.68 (sub 0) OBJ File: 'blackking.blend'
 # www.blender.org
-mtllib whiteking.mtl
+mtllib blackking.mtl
 o Cube
 v 0.300788 0.131407 -0.182108
 v 2.085169 0.108394 -1.132161

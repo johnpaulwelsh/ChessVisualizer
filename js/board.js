@@ -66,7 +66,7 @@ var Board = function( loader ) {
     	bbishop.translateZ( -55 );
     } );
 
-   loader.load( 'objects/whiterook.obj', 'objects/whiterook.mtl', function ( object ) {
+   loader.load( 'objects/whiterookwithtop.obj', 'objects/whiterookwithtop.mtl', function ( object ) {
     	object.scale.x = 3;
     	object.scale.y = 3;
     	object.scale.z = 3;
