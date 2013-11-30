@@ -40,9 +40,9 @@ var Board = function( loader ) {
 	});
 
     loader.load( 'objects/whitebishop.obj', 'objects/whitebishop.mtl', function ( object ) {
-    	object.scale.x = 3;
-    	object.scale.y = 3;
-    	object.scale.z = 3;
+    	object.scale.x = 4;
+    	object.scale.y = 4;
+    	object.scale.z = 4;
     	object.translateY( 8 );
     	
     	wbishop = object;
@@ -67,34 +67,82 @@ var Board = function( loader ) {
     } );
 
    loader.load( 'objects/whiterookwithtop.obj', 'objects/whiterookwithtop.mtl', function ( object ) {
-    	object.scale.x = 3;
-    	object.scale.y = 3;
-    	object.scale.z = 3;
-    	object.translateY( 3 );
+    	object.scale.x = 4.5;
+    	object.scale.y = 6;
+    	object.scale.z = 4.5;
+    	object.translateY( 5 );
     	
     	wrook = object;
     	game.add( wrook );
 
     	wrook.translateX( 25 );
-    	wrook.translateZ( 40 );
+    	wrook.translateZ( 39 );
+    } );
+
+    loader.load( 'objects/blackrook.obj', 'objects/blackrook.mtl', function ( object ) {
+        object.scale.x = 4.5;
+        object.scale.y = 6;
+        object.scale.z = 4.5;
+        object.translateY( 5 );
+        
+        brook = object;
+        game.add( brook );
+
+        brook.translateX( 25 );
+        brook.translateZ( -65 );
     } );
 
    loader.load( 'objects/whiteking.obj', 'objects/whiteking.mtl', function ( object ) {
         object.scale.x = 3;
-        object.scale.y = 3;
+        object.scale.y = 5;
         object.scale.z = 3;
         object.translateY( 3 );
         
         wking = object;
         game.add( wking );
 
-        wking.translateX( 5 );
-        wking.translateZ( 0 );
+        wking.translateX( -34 );
+        wking.translateZ( 40 );
     } );
 
+   loader.load( 'objects/whitequeen.obj', 'objects/whitequeen.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 4;
+        object.scale.z = 3;
+        object.translateY( 3 );
+        
+        wqueen = object;
+        game.add( wqueen );
 
+        wqueen.translateX( -19 );
+        wqueen.translateZ( 40 );
+    } );
 
+   loader.load( 'objects/blackking.obj', 'objects/blackking.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 5;
+        object.scale.z = 3;
+        object.translateY( 3 );
+        
+        bking = object;
+        game.add( bking );
 
+        bking.translateX( -33 );
+        bking.translateZ( -59 );
+    } );
+
+   loader.load( 'objects/blackqueen.obj', 'objects/blackqueen.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 4;
+        object.scale.z = 3;
+        object.translateY( 3 );
+        
+        bqueen = object;
+        game.add( bqueen );
+
+        bqueen.translateX( -20 );
+        bqueen.translateZ( -59 );
+    } );
 };
 
 Board.prototype.cloneObj = function( obj ) {
