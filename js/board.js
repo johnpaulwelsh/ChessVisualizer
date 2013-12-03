@@ -1,7 +1,14 @@
-var wking, wqueen, wbishop, wknight, wrook, wpawn;
-var bking, bqueen, bbishop, bknight, brook, bpawn;
+var wking, wqueen, wbishop, wknight, wrook;
+var wpawn1, wpawn2, wpawn3, wpawn4, wpawn5, wpawn6, wpawn7, wpawn8;
+var bking, bqueen, bbishop, bknight, brook;
+var bpawn1, bpawn2, bpawn3, bpawn4, bpawn5, bpawn6, bpawn7, bpawn8;
+
+var self;
 
 var Board = function( loader ) {
+
+    self = this;
+
 	loader.load( 'objects/chessboard.obj', 'objects/chessboard.mtl', function ( object ) {
 	    object.scale.x = 20;
 	    object.scale.y = 20;
@@ -10,34 +17,6 @@ var Board = function( loader ) {
 		board = object;
 	    game.add( board );
 	} );
-
-   	loader.load( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
-    	object.scale.x = 3;
-        object.scale.y = 3;
-        object.scale.z = 3;
-        object.translateY( 3 );
-
-        wpawn = object;
-        game.add( wpawn );
-
-        wpawn.translateX( -77 );
-        wpawn.translateZ( 22 );
-    } );
-
-    //wpawn = board.cloneObjMtl(wpawn);
-
-    loader.load( 'objects/blackpawn.obj', 'objects/blackpawn.mtl', function ( object ) {
-		object.scale.x = 3;
-		object.scale.y = 3;
-		object.scale.z = 3;
-		object.translateY( 3 );
-
-		bpawn = object;
-		game.add( bpawn );
-
-		bpawn.translateX( -77 );
-		bpawn.translateZ( -50 );
-	});
 
     loader.load( 'objects/whitebishop.obj', 'objects/whitebishop.mtl', function ( object ) {
     	object.scale.x = 4;
@@ -105,6 +84,19 @@ var Board = function( loader ) {
         wking.translateZ( 40 );
     } );
 
+    loader.load( 'objects/blackking.obj', 'objects/blackking.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 5;
+        object.scale.z = 3;
+        object.translateY( 3 );
+        
+        bking = object;
+        game.add( bking );
+
+        bking.translateX( -33 );
+        bking.translateZ( -59 );
+    } );
+
    loader.load( 'objects/whitequeen.obj', 'objects/whitequeen.mtl', function ( object ) {
         object.scale.x = 3;
         object.scale.y = 4;
@@ -116,19 +108,6 @@ var Board = function( loader ) {
 
         wqueen.translateX( -19 );
         wqueen.translateZ( 40 );
-    } );
-
-   loader.load( 'objects/blackking.obj', 'objects/blackking.mtl', function ( object ) {
-        object.scale.x = 3;
-        object.scale.y = 5;
-        object.scale.z = 3;
-        object.translateY( 3 );
-        
-        bking = object;
-        game.add( bking );
-
-        bking.translateX( -33 );
-        bking.translateZ( -59 );
     } );
 
    loader.load( 'objects/blackqueen.obj', 'objects/blackqueen.mtl', function ( object ) {
@@ -143,6 +122,51 @@ var Board = function( loader ) {
         bqueen.translateX( -20 );
         bqueen.translateZ( -59 );
     } );
+
+    loader.load( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 3;
+        object.scale.z = 3;
+        object.translateY( 3 );
+
+        wpawn1 = object;
+        game.add( wpawn1 );
+
+        wpawn1.translateX( -77 );
+        wpawn1.translateZ( 22 );
+    } );
+
+    /*
+    wpawn2 = self.cloneObj( wpawn1 );
+    wpawn2.translateX( -67 );
+    wpawn2.translateZ( 22 );
+    */
+
+    loader.load( 'objects/blackpawn.obj', 'objects/blackpawn.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 3;
+        object.scale.z = 3;
+        object.translateY( 3 );
+
+        bpawn1 = object;
+        game.add( bpawn1 );
+
+        bpawn1.translateX( -77 );
+        bpawn1.translateZ( -50 );
+    });
+
+    loader.load( 'objects/whitemonkey.obj', 'objects/whitemonkey.mtl', function ( object ) {
+        object.scale.x = 3;
+        object.scale.y = 3;
+        object.scale.z = 3;
+        object.translateY( 3 );
+
+        wknight = object;
+        game.add( wknight );
+
+        wknight.translateX( -7 );
+        wknight.translateZ( -5 );
+    });
 };
 
 Board.prototype.cloneObj = function( obj ) {
