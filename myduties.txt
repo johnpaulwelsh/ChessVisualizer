@@ -1,0 +1,16 @@
+Make extra set of game pieces with different texture set
+
+Move chess pieces with smooth animation (no passing through other objects)
+
+All objects in scene graph
+
+User can:
+Change camera (smooth transition)
+Pick themed pieces
+
+Shading:
+Two light sources
+Smooth shading with Blinn-Phong for models
+
+Implement graphical timer
+

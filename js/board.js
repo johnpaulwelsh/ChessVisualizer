@@ -1,10 +1,16 @@
+// Global variables to refer to each white piece on the board
 var wking, wqueen, wbishop, wknight, wrook;
-var wpawn1, wpawn2, wpawn3, wpawn4, wpawn5, wpawn6, wpawn7, wpawn8;
+// These will be numbered 0-7
+var wpawns = [];
+// Global variables to refer to each black piece on the board
 var bking, bqueen, bbishop, bknight, brook;
-var bpawn1, bpawn2, bpawn3, bpawn4, bpawn5, bpawn6, bpawn7, bpawn8;
+// These will be numbered 0-7
+var bpawns = [];
 
+// Refers to 'this' (the board)
 var self;
 
+// Constructor: builds a new board and places the pieces in their proper position
 var Board = function( loader ) {
 
     self = this;
@@ -20,7 +26,7 @@ var Board = function( loader ) {
 
     loader.load( 'objects/whitebishop.obj', 'objects/whitebishop.mtl', function ( object ) {
     	object.scale.x = 4;
-    	object.scale.y = 4;
+    	object.scale.y = 6;
     	object.scale.z = 4;
     	object.translateY( 8 );
     	
@@ -34,7 +40,7 @@ var Board = function( loader ) {
 
     loader.load( 'objects/blackbishop.obj', 'objects/blackbishop.mtl', function ( object ) {
     	object.scale.x = 4;
-    	object.scale.y = 4;
+    	object.scale.y = 6;
     	object.scale.z = 4;
     	object.translateY( 8 );
     	
@@ -47,7 +53,7 @@ var Board = function( loader ) {
 
    loader.load( 'objects/whiterookwithtop.obj', 'objects/whiterookwithtop.mtl', function ( object ) {
     	object.scale.x = 4.5;
-    	object.scale.y = 6;
+    	object.scale.y = 7;
     	object.scale.z = 4.5;
     	object.translateY( 5 );
     	
@@ -60,7 +66,7 @@ var Board = function( loader ) {
 
     loader.load( 'objects/blackrook.obj', 'objects/blackrook.mtl', function ( object ) {
         object.scale.x = 4.5;
-        object.scale.y = 6;
+        object.scale.y = 7;
         object.scale.z = 4.5;
         object.translateY( 5 );
         
@@ -73,7 +79,7 @@ var Board = function( loader ) {
 
    loader.load( 'objects/whiteking.obj', 'objects/whiteking.mtl', function ( object ) {
         object.scale.x = 3;
-        object.scale.y = 5;
+        object.scale.y = 6;
         object.scale.z = 3;
         object.translateY( 3 );
         
@@ -86,7 +92,7 @@ var Board = function( loader ) {
 
     loader.load( 'objects/blackking.obj', 'objects/blackking.mtl', function ( object ) {
         object.scale.x = 3;
-        object.scale.y = 5;
+        object.scale.y = 6;
         object.scale.z = 3;
         object.translateY( 3 );
         
@@ -123,24 +129,44 @@ var Board = function( loader ) {
         bqueen.translateZ( -59 );
     } );
 
+    loader.load( 'objects/whitemonkey.obj', 'objects/whitemonkey.mtl', function ( object ) {
+        object.scale.x = 2;
+        object.scale.y = 3;
+        object.scale.z = 2;
+        object.translateY( 3 );
+
+        wknight = object;
+        game.add( wknight );
+
+        wknight.translateX( -59 );
+        wknight.translateZ( 40 );
+    });
+
+    loader.load( 'objects/whitemonkey.obj', 'objects/whitemonkey.mtl', function ( object ) {
+        object.scale.x = 2;
+        object.scale.y = 3;
+        object.scale.z = 2;
+        object.translateY( 3 );
+
+        wknight = object;
+        game.add( wknight );
+
+        wknight.translateX( -59 );
+        wknight.translateZ( -61 );
+    });    
+
     loader.load( 'objects/whitepawn.obj', 'objects/whitepawn.mtl', function ( object ) {
         object.scale.x = 3;
         object.scale.y = 3;
         object.scale.z = 3;
         object.translateY( 3 );
 
-        wpawn1 = object;
-        game.add( wpawn1 );
+        wpawns[0] = object;
+        game.add( wpawns[0] );
 
-        wpawn1.translateX( -77 );
-        wpawn1.translateZ( 22 );
+        wpawns[0].translateX( -77 );
+        wpawns[0].translateZ( 22 );
     } );
-
-    /*
-    wpawn2 = self.cloneObj( wpawn1 );
-    wpawn2.translateX( -67 );
-    wpawn2.translateZ( 22 );
-    */
 
     loader.load( 'objects/blackpawn.obj', 'objects/blackpawn.mtl', function ( object ) {
         object.scale.x = 3;
@@ -154,20 +180,11 @@ var Board = function( loader ) {
         bpawn1.translateX( -77 );
         bpawn1.translateZ( -50 );
     });
-
-    loader.load( 'objects/whitemonkey.obj', 'objects/whitemonkey.mtl', function ( object ) {
-        object.scale.x = 3;
-        object.scale.y = 3;
-        object.scale.z = 3;
-        object.translateY( 3 );
-
-        wknight = object;
-        game.add( wknight );
-
-        wknight.translateX( -7 );
-        wknight.translateZ( -5 );
-    });
 };
+
+Board.prototype.resetBoard = function( self ) {
+
+}
 
 Board.prototype.cloneObj = function( obj ) {
     var i, cpy = new THREE.Object3D();
