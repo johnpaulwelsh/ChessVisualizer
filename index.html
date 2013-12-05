@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <canvas id="myCanvas" width="200" height="200"></canvas>
+        <!--<canvas id="myCanvas" width="200" height="200"></canvas>-->
 
 <!--
         <script>
@@ -67,7 +67,7 @@
 
                 var loader = new THREE.OBJMTLLoader();
                 
-                var board = new Board( loader );
+                var board = new Board( loader, 'monkey' );
 
 				scene.add( game );
                 game.position.x = 15;
