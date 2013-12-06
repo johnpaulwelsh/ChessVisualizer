@@ -1,3 +1,5 @@
+// John Paul Welsh
+
 // Global variables to refer to each white piece on the board
 var wking, wqueen, wbishop, wknight, wrook;
 // These will be numbered 0-7
@@ -10,37 +12,54 @@ var bpawns = [];
 // Refers to 'this' (the board)
 var self;
 
+/*
+0 = white bishop
+1 = black bishop
+2 = white rook
+3 = black rook
+4 = white king
+5 = black king
+6 = white queen
+7 = black queen
+8 = white knight
+9 = black knight
+10 = white pawn
+11 = black pawn
+*/
+
 var monkeypcsobj = [
-    'objects/whitebishop.obj',
-    'objects/blackbishop.obj',
-    'objects/whiterookwithtop.obj',
-    'objects/blackrook.obj',
-    'objects/whiteking.obj',
-    'objects/blackking.obj',
-    'objects/whitequeen.obj',
-    'objects/blackqueen.obj',
-    'objects/whitemonkey.obj',
-    'objects/whitemonkey.obj',
-    'objects/whitepawn.obj',
-    'objects/blackpawn.obj'
+    'objects/monkey/whitebishop.obj',
+    'objects/monkey/blackbishop.obj',
+    'objects/monkey/whiterookwithtop.obj',
+    'objects/monkey/blackrook.obj',
+    'objects/monkey/whiteking.obj',
+    'objects/monkey/blackking.obj',
+    'objects/monkey/whitequeen.obj',
+    'objects/monkey/blackqueen.obj',
+    'objects/monkey/whitemonkey.obj',
+    'objects/monkey/blackmonkey.obj',
+    'objects/monkey/whitepawn.obj',
+    'objects/monkey/blackpawn.obj'
     ];
 
 var monkeypcsmtl = [
-    'objects/whitebishop.mtl',
-    'objects/blackbishop.mtl',
-    'objects/whiterookwithtop.mtl',
-    'objects/blackrook.mtl',
-    'objects/whiteking.mtl',
-    'objects/blackking.mtl',
-    'objects/whitequeen.mtl',
-    'objects/blackqueen.mtl',
-    'objects/whitemonkey.mtl',
-    'objects/whitemonkey.mtl',
-    'objects/whitepawn.mtl',
-    'objects/blackpawn.mtl'
+    'objects/monkey/whitebishop.mtl',
+    'objects/monkey/blackbishop.mtl',
+    'objects/monkey/whiterookwithtop.mtl',
+    'objects/monkey/blackrook.mtl',
+    'objects/monkey/whiteking.mtl',
+    'objects/monkey/blackking.mtl',
+    'objects/monkey/whitequeen.mtl',
+    'objects/monkey/blackqueen.mtl',
+    'objects/monkey/whitemonkey.mtl',
+    'objects/monkey/blackmonkey.mtl',
+    'objects/monkey/whitepawn.mtl',
+    'objects/monkey/blackpawn.mtl'
     ];
 
-var secondpcs = [];
+var secondpcsobj = [];
+
+var secondpcsmtl = [];
 
 var pcsobj;
 var pcsmtl;
