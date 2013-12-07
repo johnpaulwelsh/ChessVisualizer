@@ -4,7 +4,7 @@ Move chess pieces with smooth animation (no passing through other objects)
 
 Move camera smoothly to other side of the board on next player's turn
 
-**Put all objects in scene graph**
+Put all objects in scene graph
 
 User can:
 **Change camera (smooth transition)**

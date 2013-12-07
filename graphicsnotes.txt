@@ -1,5 +1,0 @@
-uv unwrap
-
-resources -> screenshots
-
-normal vectors

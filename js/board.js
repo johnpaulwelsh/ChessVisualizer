@@ -28,63 +28,63 @@ var self;
 */
 
 var monkeypcsobj = [
-    'objects/monkey/whitebishop.obj',
-    'objects/monkey/blackbishop.obj',
-    'objects/monkey/whiterook.obj',
-    'objects/monkey/blackrook.obj',
-    'objects/monkey/whiteking.obj',
-    'objects/monkey/blackking.obj',
-    'objects/monkey/whitequeen.obj',
-    'objects/monkey/blackqueen.obj',
-    'objects/monkey/whitemonkey.obj',
-    'objects/monkey/blackmonkey.obj',
-    'objects/monkey/whitepawn.obj',
-    'objects/monkey/blackpawn.obj'
+    'objects/second/whitebishop.obj',
+    'objects/second/blackbishop.obj',
+    'objects/second/whiterook.obj',
+    'objects/second/blackrook.obj',
+    'objects/second/whiteking.obj',
+    'objects/second/blackking.obj',
+    'objects/second/whitequeen.obj',
+    'objects/second/blackqueen.obj',
+    'objects/second/whitemonkey.obj',
+    'objects/second/blackmonkey.obj',
+    'objects/second/whitepawn.obj',
+    'objects/second/blackpawn.obj'
     ];
 
 var monkeypcsmtl = [
-    'objects/monkey/whitebishop.mtl',
-    'objects/monkey/blackbishop.mtl',
-    'objects/monkey/whiterook.mtl',
-    'objects/monkey/blackrook.mtl',
-    'objects/monkey/whiteking.mtl',
-    'objects/monkey/blackking.mtl',
-    'objects/monkey/whitequeen.mtl',
-    'objects/monkey/blackqueen.mtl',
-    'objects/monkey/whitemonkey.mtl',
-    'objects/monkey/blackmonkey.mtl',
-    'objects/monkey/whitepawn.mtl',
-    'objects/monkey/blackpawn.mtl'
+    'objects/second/whitebishop.mtl',
+    'objects/second/blackbishop.mtl',
+    'objects/second/whiterook.mtl',
+    'objects/second/blackrook.mtl',
+    'objects/second/whiteking.mtl',
+    'objects/second/blackking.mtl',
+    'objects/second/whitequeen.mtl',
+    'objects/second/blackqueen.mtl',
+    'objects/second/whitemonkey.mtl',
+    'objects/second/blackmonkey.mtl',
+    'objects/second/whitepawn.mtl',
+    'objects/second/blackpawn.mtl'
     ];
 
 var secondpcsobj = [
-    'objects/monkey/whitebishop.obj',
-    'objects/monkey/blackbishop.obj',
-    'objects/monkey/whiterook.obj',
-    'objects/monkey/blackrook.obj',
-    'objects/monkey/whiteking.obj',
-    'objects/monkey/blackking.obj',
-    'objects/monkey/whitequeen.obj',
-    'objects/monkey/blackqueen.obj',
-    'objects/monkey/whitemonkey.obj',
-    'objects/monkey/blackmonkey.obj',
-    'objects/monkey/whitepawn.obj',
-    'objects/monkey/blackpawn.obj'
+    'objects/second/whitebishop.obj',
+    'objects/second/blackbishop.obj',
+    'objects/second/whiterook.obj',
+    'objects/second/blackrook.obj',
+    'objects/second/whiteking.obj',
+    'objects/second/blackking.obj',
+    'objects/second/whitequeen.obj',
+    'objects/second/blackqueen.obj',
+    'objects/second/whiteknight.obj',
+    'objects/second/blackknight.obj',
+    'objects/second/whitepawn.obj',
+    'objects/second/blackpawn.obj'
 ];
 
 var secondpcsmtl = [
-    'objects/monkey/whitebishop.mtl',
-    'objects/monkey/blackbishop.mtl',
-    'objects/monkey/whiterook.mtl',
-    'objects/monkey/blackrook.mtl',
-    'objects/monkey/whiteking.mtl',
-    'objects/monkey/blackking.mtl',
-    'objects/monkey/whitequeen.mtl',
-    'objects/monkey/blackqueen.mtl',
-    'objects/monkey/whitemonkey.mtl',
-    'objects/monkey/blackmonkey.mtl',
-    'objects/monkey/whitepawn.mtl',
-    'objects/monkey/blackpawn.mtl'
+    'objects/second/whitebishop.mtl',
+    'objects/second/blackbishop.mtl',
+    'objects/second/whiterook.mtl',
+    'objects/second/blackrook.mtl',
+    'objects/second/whiteking.mtl',
+    'objects/second/blackking.mtl',
+    'objects/second/whitequeen.mtl',
+    'objects/second/blackqueen.mtl',
+    'objects/second/whiteknight.mtl',
+    'objects/second/blackknight.mtl',
+    'objects/second/whitepawn.mtl',
+    'objects/second/blackpawn.mtl'
 ];
 
 var pcsobj;
@@ -108,11 +108,11 @@ var Board = function( loader, pieces ) {
     }
 
     // initialize board
-    self.init( loader );
+    self.init( loader, pieces );
 };
 
 // Initialize board by placing pieces into proper spots
-Board.prototype.init = function ( loader ) {
+Board.prototype.init = function ( loader, pieces ) {
     // chessboard
     loader.load( 'objects/chessboard.obj', 'objects/chessboard.mtl', function ( object ) {
         object.scale.x = 20;
@@ -125,9 +125,15 @@ Board.prototype.init = function ( loader ) {
 
     // white bishop
     loader.load( pcsobj[0], pcsmtl[0], function ( object ) {
-        object.scale.x = 4;
-        object.scale.y = 6;
-        object.scale.z = 4;
+        if (pieces == 'monkey') {
+            object.scale.x = 4;
+            object.scale.y = 6;
+            object.scale.z = 4;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 6;
+            object.scale.z = 3;
+        }
         
         wbishop = object;
         game.add( wbishop );
@@ -139,9 +145,15 @@ Board.prototype.init = function ( loader ) {
 
     // black bishop
     loader.load( pcsobj[1], pcsmtl[1], function ( object ) {
-        object.scale.x = 4;
-        object.scale.y = 6;
-        object.scale.z = 4;
+        if (pieces == 'monkey') {
+            object.scale.x = 4;
+            object.scale.y = 6;
+            object.scale.z = 4;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 6;
+            object.scale.z = 3;
+        }
         
         bbishop = object;
         game.add( bbishop );
@@ -152,9 +164,15 @@ Board.prototype.init = function ( loader ) {
 
     // white rook
     loader.load( pcsobj[2], pcsmtl[2], function ( object ) {
-        object.scale.x = 4.5;
-        object.scale.y = 7;
-        object.scale.z = 4.5;
+        if (pieces == 'monkey') {
+            object.scale.x = 4.5;
+            object.scale.y = 7;
+            object.scale.z = 4.5;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 5;
+            object.scale.z = 3;
+        }
         
         wrook = object;
         game.add( wrook );
@@ -165,9 +183,15 @@ Board.prototype.init = function ( loader ) {
 
     // black rook
     loader.load( pcsobj[3], pcsmtl[3], function ( object ) {
-        object.scale.x = 4.5;
-        object.scale.y = 7;
-        object.scale.z = 4.5;
+        if (pieces == 'monkey') {
+            object.scale.x = 4.5;
+            object.scale.y = 7;
+            object.scale.z = 4.5;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 5;
+            object.scale.z = 3;
+        }
         
         brook = object;
         game.add( brook );
@@ -205,7 +229,7 @@ Board.prototype.init = function ( loader ) {
     // white queen
     loader.load( pcsobj[6], pcsmtl[6], function ( object ) {
         object.scale.x = 3;
-        object.scale.y = 4;
+        object.scale.y = 5;
         object.scale.z = 3;
         
         wqueen = object;
@@ -218,7 +242,7 @@ Board.prototype.init = function ( loader ) {
     // black queen
     loader.load( pcsobj[7], pcsmtl[7], function ( object ) {
         object.scale.x = 3;
-        object.scale.y = 4;
+        object.scale.y = 5;
         object.scale.z = 3;
         
         bqueen = object;
@@ -230,9 +254,15 @@ Board.prototype.init = function ( loader ) {
 
     // white knight
     loader.load( pcsobj[8], pcsmtl[8], function ( object ) {
-        object.scale.x = 2;
-        object.scale.y = 3;
-        object.scale.z = 2;
+        if (pieces == 'monkey') {
+            object.scale.x = 2;
+            object.scale.y = 3;
+            object.scale.z = 2;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 5;
+            object.scale.z = 3;
+        }
 
         wknight = object;
         game.add( wknight );
@@ -243,9 +273,15 @@ Board.prototype.init = function ( loader ) {
 
     // black knight
     loader.load( pcsobj[9], pcsmtl[9], function ( object ) {
-        object.scale.x = 2;
-        object.scale.y = 3;
-        object.scale.z = 2;
+        if (pieces == 'monkey') {
+            object.scale.x = 2;
+            object.scale.y = 3;
+            object.scale.z = 2;
+        } else {
+            object.scale.x = 3;
+            object.scale.y = 5;
+            object.scale.z = 3;
+        }
 
         wknight = object;
         game.add( wknight );
@@ -279,10 +315,29 @@ Board.prototype.init = function ( loader ) {
         bpawns[0].translateX( -77 );
         bpawns[0].translateZ( -50 );
     });
+
+    //bpawns[1] = new THREE.Object3D();
 }
 
-Board.prototype.resetBoard = function( ) {
-    self.init();
+Board.prototype.changePieces = function( loader, pieces ) {
+    // reload the board with pieces changed
+    if (pieces == 'monkey') {
+        pcsobj = monkeypcsobj;
+        pcsmtl = monkeypcsmtl;
+    } else if (pieces == 'second') {
+        pcsobj = secondpcsobj;
+        pcsmtl = secondpcsmtl;
+    } else {
+        // default is monkey
+        pcsobj = monkeypcsobj;
+        pcsmtl = monkeypcsmtl;
+    }
+
+    self.init( loader, pieces );
+}
+
+Board.prototype.resetBoard = function( loader, pieces ) {
+    self.init( loader, pieces );
 }
 
 Board.prototype.cloneObj = function( obj ) {
