@@ -30,7 +30,7 @@ var self;
 var monkeypcsobj = [
     'objects/monkey/whitebishop.obj',
     'objects/monkey/blackbishop.obj',
-    'objects/monkey/whiterookwithtop.obj',
+    'objects/monkey/whiterook.obj',
     'objects/monkey/blackrook.obj',
     'objects/monkey/whiteking.obj',
     'objects/monkey/blackking.obj',
@@ -45,7 +45,7 @@ var monkeypcsobj = [
 var monkeypcsmtl = [
     'objects/monkey/whitebishop.mtl',
     'objects/monkey/blackbishop.mtl',
-    'objects/monkey/whiterookwithtop.mtl',
+    'objects/monkey/whiterook.mtl',
     'objects/monkey/blackrook.mtl',
     'objects/monkey/whiteking.mtl',
     'objects/monkey/blackking.mtl',
@@ -57,9 +57,35 @@ var monkeypcsmtl = [
     'objects/monkey/blackpawn.mtl'
     ];
 
-var secondpcsobj = [];
+var secondpcsobj = [
+    'objects/monkey/whitebishop.obj',
+    'objects/monkey/blackbishop.obj',
+    'objects/monkey/whiterook.obj',
+    'objects/monkey/blackrook.obj',
+    'objects/monkey/whiteking.obj',
+    'objects/monkey/blackking.obj',
+    'objects/monkey/whitequeen.obj',
+    'objects/monkey/blackqueen.obj',
+    'objects/monkey/whitemonkey.obj',
+    'objects/monkey/blackmonkey.obj',
+    'objects/monkey/whitepawn.obj',
+    'objects/monkey/blackpawn.obj'
+];
 
-var secondpcsmtl = [];
+var secondpcsmtl = [
+    'objects/monkey/whitebishop.mtl',
+    'objects/monkey/blackbishop.mtl',
+    'objects/monkey/whiterook.mtl',
+    'objects/monkey/blackrook.mtl',
+    'objects/monkey/whiteking.mtl',
+    'objects/monkey/blackking.mtl',
+    'objects/monkey/whitequeen.mtl',
+    'objects/monkey/blackqueen.mtl',
+    'objects/monkey/whitemonkey.mtl',
+    'objects/monkey/blackmonkey.mtl',
+    'objects/monkey/whitepawn.mtl',
+    'objects/monkey/blackpawn.mtl'
+];
 
 var pcsobj;
 var pcsmtl;
@@ -82,11 +108,11 @@ var Board = function( loader, pieces ) {
     }
 
     // initialize board
-    self.init();
+    self.init( loader );
 };
 
 // Initialize board by placing pieces into proper spots
-Board.prototype.init = function ( ) {
+Board.prototype.init = function ( loader ) {
     // chessboard
     loader.load( 'objects/chessboard.obj', 'objects/chessboard.mtl', function ( object ) {
         object.scale.x = 20;
@@ -102,7 +128,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 4;
         object.scale.y = 6;
         object.scale.z = 4;
-        object.translateY( 8 );
         
         wbishop = object;
         game.add( wbishop );
@@ -117,13 +142,12 @@ Board.prototype.init = function ( ) {
         object.scale.x = 4;
         object.scale.y = 6;
         object.scale.z = 4;
-        object.translateY( 8 );
         
         bbishop = object;
         game.add( bbishop );
 
         bbishop.translateX( -44 );
-        bbishop.translateZ( -55 );
+        bbishop.translateZ( -65 );
     } );
 
     // white rook
@@ -131,7 +155,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 4.5;
         object.scale.y = 7;
         object.scale.z = 4.5;
-        object.translateY( 5 );
         
         wrook = object;
         game.add( wrook );
@@ -145,7 +168,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 4.5;
         object.scale.y = 7;
         object.scale.z = 4.5;
-        object.translateY( 5 );
         
         brook = object;
         game.add( brook );
@@ -159,7 +181,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 6;
         object.scale.z = 3;
-        object.translateY( 3 );
         
         wking = object;
         game.add( wking );
@@ -173,13 +194,12 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 6;
         object.scale.z = 3;
-        object.translateY( 3 );
         
         bking = object;
         game.add( bking );
 
         bking.translateX( -33 );
-        bking.translateZ( -59 );
+        bking.translateZ( -65 );
     } );
 
     // white queen
@@ -187,7 +207,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 4;
         object.scale.z = 3;
-        object.translateY( 3 );
         
         wqueen = object;
         game.add( wqueen );
@@ -201,13 +220,12 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 4;
         object.scale.z = 3;
-        object.translateY( 3 );
         
         bqueen = object;
         game.add( bqueen );
 
         bqueen.translateX( -20 );
-        bqueen.translateZ( -59 );
+        bqueen.translateZ( -65 );
     } );
 
     // white knight
@@ -215,7 +233,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 2;
         object.scale.y = 3;
         object.scale.z = 2;
-        object.translateY( 3 );
 
         wknight = object;
         game.add( wknight );
@@ -229,13 +246,12 @@ Board.prototype.init = function ( ) {
         object.scale.x = 2;
         object.scale.y = 3;
         object.scale.z = 2;
-        object.translateY( 3 );
 
         wknight = object;
         game.add( wknight );
 
         wknight.translateX( -59 );
-        wknight.translateZ( -61 );
+        wknight.translateZ( -65 );
     });    
 
     // white pawn
@@ -243,7 +259,6 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 3;
         object.scale.z = 3;
-        object.translateY( 3 );
 
         wpawns[0] = object;
         game.add( wpawns[0] );
@@ -257,13 +272,12 @@ Board.prototype.init = function ( ) {
         object.scale.x = 3;
         object.scale.y = 3;
         object.scale.z = 3;
-        object.translateY( 3 );
 
-        bpawn1 = object;
-        game.add( bpawn1 );
+        bpawns[0] = object;
+        game.add( bpawns[0] );
 
-        bpawn1.translateX( -77 );
-        bpawn1.translateZ( -50 );
+        bpawns[0].translateX( -77 );
+        bpawns[0].translateZ( -50 );
     });
 }
 
