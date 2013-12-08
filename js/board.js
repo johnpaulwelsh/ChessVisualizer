@@ -40,7 +40,7 @@ var monkeypcsobj = [
     'objects/monkey/blackmonkey.obj',
     'objects/monkey/whitepawn.obj',
     'objects/monkey/blackpawn.obj'
-    ];
+];
 
 var monkeypcsmtl = [
     'objects/monkey/whitebishop.mtl',
@@ -55,7 +55,7 @@ var monkeypcsmtl = [
     'objects/monkey/blackmonkey.mtl',
     'objects/monkey/whitepawn.mtl',
     'objects/monkey/blackpawn.mtl'
-    ];
+];
 
 var secondpcsobj = [
     'objects/second/whitebishop.obj',
