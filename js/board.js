@@ -28,33 +28,33 @@ var self;
 */
 
 var monkeypcsobj = [
-    'objects/second/whitebishop.obj',
-    'objects/second/blackbishop.obj',
-    'objects/second/whiterook.obj',
-    'objects/second/blackrook.obj',
-    'objects/second/whiteking.obj',
-    'objects/second/blackking.obj',
-    'objects/second/whitequeen.obj',
-    'objects/second/blackqueen.obj',
-    'objects/second/whitemonkey.obj',
-    'objects/second/blackmonkey.obj',
-    'objects/second/whitepawn.obj',
-    'objects/second/blackpawn.obj'
+    'objects/monkey/whitebishop.obj',
+    'objects/monkey/blackbishop.obj',
+    'objects/monkey/whiterook.obj',
+    'objects/monkey/blackrook.obj',
+    'objects/monkey/whiteking.obj',
+    'objects/monkey/blackking.obj',
+    'objects/monkey/whitequeen.obj',
+    'objects/monkey/blackqueen.obj',
+    'objects/monkey/whitemonkey.obj',
+    'objects/monkey/blackmonkey.obj',
+    'objects/monkey/whitepawn.obj',
+    'objects/monkey/blackpawn.obj'
     ];
 
 var monkeypcsmtl = [
-    'objects/second/whitebishop.mtl',
-    'objects/second/blackbishop.mtl',
-    'objects/second/whiterook.mtl',
-    'objects/second/blackrook.mtl',
-    'objects/second/whiteking.mtl',
-    'objects/second/blackking.mtl',
-    'objects/second/whitequeen.mtl',
-    'objects/second/blackqueen.mtl',
-    'objects/second/whitemonkey.mtl',
-    'objects/second/blackmonkey.mtl',
-    'objects/second/whitepawn.mtl',
-    'objects/second/blackpawn.mtl'
+    'objects/monkey/whitebishop.mtl',
+    'objects/monkey/blackbishop.mtl',
+    'objects/monkey/whiterook.mtl',
+    'objects/monkey/blackrook.mtl',
+    'objects/monkey/whiteking.mtl',
+    'objects/monkey/blackking.mtl',
+    'objects/monkey/whitequeen.mtl',
+    'objects/monkey/blackqueen.mtl',
+    'objects/monkey/whitemonkey.mtl',
+    'objects/monkey/blackmonkey.mtl',
+    'objects/monkey/whitepawn.mtl',
+    'objects/monkey/blackpawn.mtl'
     ];
 
 var secondpcsobj = [

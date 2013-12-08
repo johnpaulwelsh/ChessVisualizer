@@ -1,4 +1,5 @@
-Make extra set of game pieces with different texture set
+**Make extra set of game pieces**
+with different texture set
 
 Move chess pieces with smooth animation (no passing through other objects)
 
