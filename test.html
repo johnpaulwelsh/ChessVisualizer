@@ -15,47 +15,34 @@
     var tempArray;
     var whitetime;
 
-$( document ).ready(function(){
+	$( document ).ready(function(){
 
- // Using the core $.ajax() method
-$.getJSON(gameID, function(resp){
-	$.each( resp, function( key, value ) {
-		if (key=="lastmovenumber")
-			lastmovenumber= value;
-		else if (key=="blacktime")
-			blacktime= value;
-		else if (key=="gameover")
-			gameover=value;
-		else if (key=="whitesturn")
-			whitesturn= value;
-		else if (key=="moves")
-			moves=value[0].split(",");
-		else
-			whitetime=value;
-	})
-	
-	//moves = tempArray.split(",");
-	alert(lastmovenumber);
-	alert(blacktime);
-	alert(gameover);
-	alert(whitesturn);
-	alert(moves[0]);
-	alert(whitetime);
-});
-
-// $.ajax({
-//      url:"http://10.11.18.65/chess/cg/340",
-//      dataType: 'jsonp', 
-//      success:function(json){
-//          // do stuff with json (in this case an array)
-//          alert("Success");
-//      },
-//      error:function(){
-//          alert("Error");
-//      },
-// });
-
-});
+		 // Using the core $.ajax() method
+		$.getJSON(gameID, function(resp){
+			$.each( resp, function( key, value ) {
+				if (key=="lastmovenumber")
+					lastmovenumber= value;
+				else if (key=="blacktime")
+					blacktime= value;
+				else if (key=="gameover")
+					gameover=value;
+				else if (key=="whitesturn")
+					whitesturn= value;
+				else if (key=="moves")
+					moves=value[0].split(",");
+				else
+					whitetime=value;
+			})
+			
+			//moves = tempArray.split(",");
+			alert(lastmovenumber);
+			alert(blacktime);
+			alert(gameover);
+			alert(whitesturn);
+			alert(moves[0]);
+			alert(whitetime);
+		});
+	});
  
     </script>
 </body>
