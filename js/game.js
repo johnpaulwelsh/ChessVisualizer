@@ -1,3 +1,5 @@
+// John Sullivan and John Paul Welsh
+
 var self;
 var container, stats;
 var camera, scene, renderer;
@@ -31,8 +33,7 @@ ChessGame.prototype.init = function () {
     scene.add(ambient);
 
     var directionalLightOne = new THREE.DirectionalLight(0xffffff); // white light
-    // position(these parameters) - origin = direction
-    directionalLightOne.position.set(0.5, 2, 1).normalize();
+    directionalLightOne.position.set(0.5, 2, 1).normalize(); // position - origin = direction
     scene.add(directionalLightOne);
 
     var directionalLightTwo = new THREE.DirectionalLight(0xffffff); // yellow light is ffff00
@@ -52,25 +53,37 @@ ChessGame.prototype.init = function () {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    window.addEventListener('resize', self.onWindowResize, false);
+    window.addEventListener('resize', onWindowResize, false);
 
-    var ControlPanel = function() {
-        this.pieces = 'pieces';
-        this.angle = 75;
-        cameraAngle = this.angle;
-    };
 
-    window.onload = function() {
-        var control = new ControlPanel();
-        var gui = new dat.GUI();
-        pcs = gui.add(control, 'pieces', ['monkey', 'second']);
-        cameraAngle = gui.add(camera.position, 'y', 5, 150);
-    };
+    var control = new ControlPanel();
+    var gui = new dat.GUI();
+    var f1 = gui.addFolder('Game controls');
+    pcs = f1.add(control, 'pieces', ['monkey', 'second']);
+    //pcs = gui.add(control, 'pieces', ['monkey', 'second']);
+    cameraAngle = f1.add(camera.position, 'y', 5, 150);
+
+
 
     render();
 }
 
-ChessGame.prototype.onWindowResize = function () {
+var ControlPanel = function() {
+    this.pieces = 'pieces';
+    this.angle = 75;
+    cameraAngle = this.angle;
+};
+
+window.onload = function() {
+    // var control = new ControlPanel();
+    // var gui = new dat.GUI();
+    // var f1 = gui.addFolder('Game controls');
+    // pcs = f1.add(control, 'pieces', ['monkey', 'second']);
+    // //pcs = gui.add(control, 'pieces', ['monkey', 'second']);
+    // cameraAngle = f1.add(camera.position, 'y', 5, 150);
+};
+
+function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
 

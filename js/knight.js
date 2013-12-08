@@ -1,0 +1,3 @@
+var Knight = function () {
+	
+}

@@ -1,18 +1,10 @@
-**Make extra set of game pieces**
-with different texture set
-
-
-textures: apply them in blender from a downloaded .png or .jpg,
-they get referenced in the .mtl file, make sure the path is right
-
-
+Make extra set of game pieces with different texture set
 
 Move chess pieces with smooth animation (no passing through other objects)
 
 Move camera smoothly to other side of the board on next player's turn
-whitesturn or blacksturn
 
-**Put all objects in scene graph**
+Put all objects in scene graph
 
 User can:
 **Change camera (smooth transition)**

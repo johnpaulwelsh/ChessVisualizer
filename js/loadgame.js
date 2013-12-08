@@ -1,3 +1,5 @@
+// John Sullivan and John Paul Welsh
+
 var gameID = "https://10.11.18.65/cg/chess/";
 var lastmovenumber;
 var blacktime;
@@ -16,24 +18,36 @@ LoadGame.prototype.init = function (shortGameID) {
     gameID = gameID + shortGameID;
 
     $(document).ready(function() {
-         // Using the core $.ajax() method
+        // Using the core $.ajax() method
         $.getJSON(gameID, function(resp) {
             $.each(resp, function(key, value) {
-                if (key == "lastmovenumber")
-                    lastmovenumber = value;
-                else if (key == "blacktime")
-                    blacktime = value;
-                else if (key == "gameover")
-                    gameover = value;
-                else if (key == "whitesturn")
-                    whitesturn = value;
-                else if (key == "moves")
-                    moves = value[0].split(",");
-                else
-                    whitetime = value;
+                
+                switch (key) {
+                    case "lastmovenumber":
+                        lastmovenumber = value;
+                        break;
+                    case "blacktime":
+                        blacktime = value;
+                        break;
+                    case "gameover":
+                        gameover = value;
+                        break;
+                    case "whitesturn":
+                        whitesturn = value;
+                        break;
+                    case "moves":
+                        moves = value[0].split(",");
+                        break;
+                    case "whitetime":
+                        whitetime = value;
+                        break;
+                    default:
+                        console.log("Somehow it wasn't any of those fields.");
+                        break;
+                }
             })
         });
     });
 
-    var chessgame = new ChessGame(gameID, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime);
+    var chessgame = new ChessGame();
 }
