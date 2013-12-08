@@ -91,7 +91,7 @@ var pcsobj;
 var pcsmtl;
 
 // Constructor: builds a new board and chooses which set of pieces to load in
-var Board = function( loader, pieces ) {
+var Board = function(loader, pieces) {
 
     self = this;
     
@@ -108,23 +108,23 @@ var Board = function( loader, pieces ) {
     }
 
     // initialize board
-    self.init( loader, pieces );
+    self.init(loader, pieces);
 };
 
 // Initialize board by placing pieces into proper spots
-Board.prototype.init = function ( loader, pieces ) {
+Board.prototype.init = function (loader, pieces) {
     // chessboard
-    loader.load( 'objects/chessboard.obj', 'objects/chessboard.mtl', function ( object ) {
+    loader.load('objects/chessboard.obj', 'objects/chessboard.mtl', function (object) {
         object.scale.x = 20;
         object.scale.y = 20;
         object.scale.z = 20;
 
         board = object;
-        game.add( board );
-    } );
+        game.add(board);
+    });
 
     // white bishop
-    loader.load( pcsobj[0], pcsmtl[0], function ( object ) {
+    loader.load(pcsobj[0], pcsmtl[0], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 4;
             object.scale.y = 6;
@@ -136,15 +136,19 @@ Board.prototype.init = function ( loader, pieces ) {
         }
         
         wbishop = object;
-        game.add( wbishop );
+        game.add(wbishop);
 
-        wbishop.translateX( -44 );
-        wbishop.translateZ( 40 );
-        wbishop.rotation.z = 0;
-    } );
+        if (pieces == 'monkey') {
+            wbishop.translateX(-44);
+            wbishop.translateZ(40);
+        } else {
+            wbishop.translateX(-47);
+            wbishop.translateZ(40);
+        }
+    });
 
     // black bishop
-    loader.load( pcsobj[1], pcsmtl[1], function ( object ) {
+    loader.load(pcsobj[1], pcsmtl[1], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 4;
             object.scale.y = 6;
@@ -156,14 +160,14 @@ Board.prototype.init = function ( loader, pieces ) {
         }
         
         bbishop = object;
-        game.add( bbishop );
+        game.add(bbishop);
 
-        bbishop.translateX( -44 );
-        bbishop.translateZ( -65 );
-    } );
+        bbishop.translateX(-46);
+        bbishop.translateZ(-65);
+    });
 
     // white rook
-    loader.load( pcsobj[2], pcsmtl[2], function ( object ) {
+    loader.load(pcsobj[2], pcsmtl[2], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 4.5;
             object.scale.y = 7;
@@ -175,14 +179,14 @@ Board.prototype.init = function ( loader, pieces ) {
         }
         
         wrook = object;
-        game.add( wrook );
+        game.add(wrook);
 
-        wrook.translateX( 25 );
-        wrook.translateZ( 39 );
-    } );
+        wrook.translateX(25);
+        wrook.translateZ(39);
+    });
 
     // black rook
-    loader.load( pcsobj[3], pcsmtl[3], function ( object ) {
+    loader.load(pcsobj[3], pcsmtl[3], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 4.5;
             object.scale.y = 7;
@@ -194,24 +198,24 @@ Board.prototype.init = function ( loader, pieces ) {
         }
         
         brook = object;
-        game.add( brook );
+        game.add(brook);
 
-        brook.translateX( 25 );
-        brook.translateZ( -65 );
-    } );
+        brook.translateX(25);
+        brook.translateZ(-65);
+    });
 
     // white king
-    loader.load( pcsobj[4], pcsmtl[4], function ( object ) {
+    loader.load(pcsobj[4], pcsmtl[4], function (object) {
         object.scale.x = 3;
         object.scale.y = 6;
         object.scale.z = 3;
         
         wking = object;
-        game.add( wking );
+        game.add(wking);
 
-        wking.translateX( -34 );
-        wking.translateZ( 40 );
-    } );
+        wking.translateX(-34);
+        wking.translateZ(40);
+    });
 
     // black king
     loader.load( pcsobj[5], pcsmtl[5], function ( object ) {
@@ -227,33 +231,38 @@ Board.prototype.init = function ( loader, pieces ) {
     } );
 
     // white queen
-    loader.load( pcsobj[6], pcsmtl[6], function ( object ) {
+    loader.load(pcsobj[6], pcsmtl[6], function (object) {
         object.scale.x = 3;
         object.scale.y = 5;
         object.scale.z = 3;
         
         wqueen = object;
-        game.add( wqueen );
+        game.add(wqueen);
 
-        wqueen.translateX( -19 );
-        wqueen.translateZ( 40 );
-    } );
+        if (pieces == 'monkey') {
+            wqueen.translateX(-19);
+            wqueen.translateZ(40);
+        } else {
+            wqueen.translateX(-17);
+            wqueen.translateZ(38);
+        }
+    });
 
     // black queen
-    loader.load( pcsobj[7], pcsmtl[7], function ( object ) {
+    loader.load(pcsobj[7], pcsmtl[7], function (object) {
         object.scale.x = 3;
         object.scale.y = 5;
         object.scale.z = 3;
         
         bqueen = object;
-        game.add( bqueen );
+        game.add(bqueen);
 
-        bqueen.translateX( -20 );
-        bqueen.translateZ( -65 );
-    } );
+        bqueen.translateX(-18);
+        bqueen.translateZ(-65);
+    });
 
     // white knight
-    loader.load( pcsobj[8], pcsmtl[8], function ( object ) {
+    loader.load(pcsobj[8], pcsmtl[8], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 2;
             object.scale.y = 3;
@@ -265,14 +274,14 @@ Board.prototype.init = function ( loader, pieces ) {
         }
 
         wknight = object;
-        game.add( wknight );
+        game.add(wknight);
 
-        wknight.translateX( -59 );
-        wknight.translateZ( 40 );
+        wknight.translateX(-59);
+        wknight.translateZ(40);
     });
 
     // black knight
-    loader.load( pcsobj[9], pcsmtl[9], function ( object ) {
+    loader.load(pcsobj[9], pcsmtl[9], function (object) {
         if (pieces == 'monkey') {
             object.scale.x = 2;
             object.scale.y = 3;
@@ -284,42 +293,42 @@ Board.prototype.init = function ( loader, pieces ) {
         }
 
         wknight = object;
-        game.add( wknight );
+        game.add(wknight);
 
-        wknight.translateX( -59 );
-        wknight.translateZ( -65 );
+        wknight.translateX(-59);
+        wknight.translateZ(-65);
     });    
 
     // white pawn
-    loader.load( pcsobj[10], pcsmtl[10], function ( object ) {
+    loader.load(pcsobj[10], pcsmtl[10], function (object) {
         object.scale.x = 3;
         object.scale.y = 3;
         object.scale.z = 3;
 
         wpawns[0] = object;
-        game.add( wpawns[0] );
+        game.add(wpawns[0]);
 
-        wpawns[0].translateX( -77 );
-        wpawns[0].translateZ( 22 );
-    } );
+        wpawns[0].translateX(-77);
+        wpawns[0].translateZ(22);
+    });
 
     // black pawn
-    loader.load( pcsobj[11], pcsmtl[11], function ( object ) {
+    loader.load(pcsobj[11], pcsmtl[11], function (object) {
         object.scale.x = 3;
         object.scale.y = 3;
         object.scale.z = 3;
 
         bpawns[0] = object;
-        game.add( bpawns[0] );
+        game.add(bpawns[0]);
 
-        bpawns[0].translateX( -77 );
-        bpawns[0].translateZ( -50 );
+        bpawns[0].translateX(-77);
+        bpawns[0].translateZ(-50);
     });
 
     //bpawns[1] = new THREE.Object3D();
 }
 
-Board.prototype.changePieces = function( loader, pieces ) {
+Board.prototype.changePieces = function(loader, pieces) {
     // reload the board with pieces changed
     if (pieces == 'monkey') {
         pcsobj = monkeypcsobj;
@@ -333,38 +342,33 @@ Board.prototype.changePieces = function( loader, pieces ) {
         pcsmtl = monkeypcsmtl;
     }
 
-    self.init( loader, pieces );
+    self.init(loader, pieces);
 }
 
-Board.prototype.resetBoard = function( loader, pieces ) {
-    self.init( loader, pieces );
+Board.prototype.resetBoard = function(loader, pieces) {
+    self.init(loader, pieces);
 }
 
-Board.prototype.cloneObj = function( obj ) {
+Board.prototype.cloneObj = function(obj) {
     var i, cpy = new THREE.Object3D();
     for (var i in obj.children) {
-        cpy.add(
-            new THREE.Mesh(obj.children[i].geometry)
-        );
+        cpy.add(new THREE.Mesh(obj.children[i].geometry));
     }
     return cpy;
 }
 
-Board.prototype.cloneObjMtl = function( objmtl ) {
+Board.prototype.cloneObjMtl = function(objmtl) {
     var i, cpy = new THREE.Object3D();
     for (var i in objmtl.children) {
-        cpy.add(
-            new THREE.Mesh(objmtl.children[i].geometry,
-            objmtl.children[i].material)
-        );
+        cpy.add(new THREE.Mesh(objmtl.children[i].geometry, objmtl.children[i].material));
     }
     return cpy;
 }
 
-Board.prototype.movePiece = function( piece ) {
+Board.prototype.movePiece = function(piece) {
 	// move piece
 };
 
-Board.prototype.run = function(  ) {
+Board.prototype.run = function() {
 	// read instructions, move pieces
 };

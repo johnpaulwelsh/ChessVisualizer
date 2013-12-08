@@ -60,8 +60,8 @@
                 directionalLightOne.position.set(0.5, 2, 1).normalize();
                 scene.add(directionalLightOne);
 
-                var directionalLightTwo = new THREE.DirectionalLight(0xffff00); // yellow light
-                directionalLightTwo.position.set(-0.5, 2, -1).normalize();
+                var directionalLightTwo = new THREE.DirectionalLight(0xffffff); // yellow light (ffff00)
+                directionalLightTwo.position.set(0.5, 5, -10).normalize();
                 scene.add(directionalLightTwo);
 
                 game = new THREE.Object3D();
@@ -109,9 +109,9 @@
 
                 camera.lookAt(scene.position);
 
-                cameraAngle.onChange( function(angle) { camera.y = angle; } );
+                cameraAngle.onChange(function (angle) { camera.y = angle; });
 
-                //pcs.onChange( function(pcs) { board.changePieces(pcs) } );
+                //pcs.onChange(function(pcs) { board.changePieces(pcs) });
 
                 renderer.render(scene, camera);
             }
