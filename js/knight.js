@@ -1,13 +1,13 @@
-var Knight = function (loader, pieces, color, side, obj, mtl) {
+var Knight = function (loader, piecestheme, color, side, obj, mtl) {
     self = this;
-    self.init(loader, pieces, color, side, obj, mtl);
+    self.init(loader, piecestheme, color, side, obj, mtl);
 }
 
-Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
+Knight.prototype.init = function (loader, piecestheme, color, side, obj, mtl) {
     
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {
-            if (pieces == 'monkey') {
+            if (piecestheme == 'monkey') {
                 object.scale.x = 2;
                 object.scale.y = 3;
                 object.scale.z = 2;
@@ -31,7 +31,7 @@ Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
     } else {
 
         loader.load(obj, mtl, function (object) {
-            if (pieces == 'monkey') {
+            if (piecestheme == 'monkey') {
                 object.scale.x = 2;
                 object.scale.y = 3;
                 object.scale.z = 2;

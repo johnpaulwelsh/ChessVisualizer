@@ -1,9 +1,9 @@
-var Pawn = function (loader, pieces, color, position, obj, mtl) {
+var Pawn = function (loader, piecestheme, color, position, obj, mtl) {
     self = this;
-    self.init(loader, pieces, color, position, obj, mtl);
+    self.init(loader, piecestheme, color, position, obj, mtl);
 }
 
-Pawn.prototype.init = function (loader, pieces, color, position, obj, mtl) {
+Pawn.prototype.init = function (loader, piecestheme, color, position, obj, mtl) {
 
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {

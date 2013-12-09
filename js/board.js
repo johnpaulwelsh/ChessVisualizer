@@ -6,12 +6,12 @@ var brd;
 // Global variables to refer to each white piece on the board
 var w_king, w_queen, w_l_bishop, w_r_bishop, w_l_knight, w_r_knight, w_l_rook, w_r_rook;
 // These will be numbered 0-7
-var wpawns = [];
+var w_pawns = [];
 
 // Global variables to refer to each black piece on the board
 var b_king, b_queen, b_l_bishop, b_r_bishop, b_l_knight, b_r_knight, b_l_rook, b_r_rook;
 // These will be numbered 0-7
-var bpawns = [];
+var b_pawns = [];
 
 // Refers to 'this' (the board object, not the board model)
 var self;
@@ -19,15 +19,7 @@ var self;
 var pcsobj;
 var pcsmtl;
 
-var pieceArray = [
-w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
-w_pawns[0], w_pawns[1], w_pawns[2], w_pawns[3], w_pawns[4], w_pawns[5], w_pawns[6], w_pawns[7],
-1, 1, 1, 1, 1, 1, 1, 1,
-1, 1, 1, 1, 1, 1, 1, 1,
-1, 1, 1, 1, 1, 1, 1, 1,
-1, 1, 1, 1, 1, 1, 1, 1,
-b_pawns[7], b_pawns[6], b_pawns[5], b_pawns[4], b_pawns[3], b_pawns[2], b_pawns[1], b_pawns[0],
-b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook];
+var pieceArray = [];
 
 /*
 0 = white bishop
@@ -105,103 +97,79 @@ var secondpcsmtl = [
 ];
 
 // Constructor: builds a new board and chooses which set of pieces to load in
-var Board = function(loader, pieces) {
-
+var Board = function(loader, piecestheme) {
     self = this;
     
-    if (pieces == 'monkey') {
+    if (piecestheme == 'monkey') {
         pcsobj = monkeypcsobj;
         pcsmtl = monkeypcsmtl;
-    } else {
+    } else if (piecestheme == 'second') {
         pcsobj = secondpcsobj;
         pcsmtl = secondpcsmtl;
+    } else {
+        window.alert("No theme chosen.");
     }
 
     // initialize board
-    self.init(loader, pieces);
+    self.init(loader, piecestheme);
 };
 
-// Initialize board by placing pieces into proper spots
-Board.prototype.init = function (loader, pieces) {
+// Initialize board by placing piecestheme into proper spots
+Board.prototype.init = function (loader, piecestheme) {
     // chessboard
     loader.load('objects/chessboardrotated.obj', 'objects/chessboardrotated.mtl', function (object) {
         object.scale.x = 20;
         object.scale.y = 20;
         object.scale.z = 20;
 
-        brd = object;
-        game.add(brd);
+        game.add(object);
     });
 
-    w_l_bishop = new Bishop(loader, pieces, 'white', 'left', pcsobj[0], pcsmtl[0]);
-    w_r_bishop = new Bishop(loader, pieces, 'white', 'right', pcsobj[0], pcsmtl[0]);
-    b_l_bishop = new Bishop(loader, pieces, 'black', 'left', pcsobj[1], pcsmtl[1]);
-    b_r_bishop = new Bishop(loader, pieces, 'black', 'right', pcsobj[1], pcsmtl[1]);
+    w_l_bishop = new Bishop(loader, piecestheme, 'white', 'left', pcsobj[0], pcsmtl[0]);
+    w_r_bishop = new Bishop(loader, piecestheme, 'white', 'right', pcsobj[0], pcsmtl[0]);
+    b_l_bishop = new Bishop(loader, piecestheme, 'black', 'left', pcsobj[1], pcsmtl[1]);
+    b_r_bishop = new Bishop(loader, piecestheme, 'black', 'right', pcsobj[1], pcsmtl[1]);
 
-    w_l_rook = new Rook(loader, pieces, 'white', 'left', pcsobj[2], pcsmtl[2]);
-    w_r_rook = new Rook(loader, pieces, 'white', 'right', pcsobj[2], pcsmtl[2]);
-    b_l_rook = new Rook(loader, pieces, 'black', 'left', pcsobj[3], pcsmtl[3]);
-    b_r_rook = new Rook(loader, pieces, 'black', 'right', pcsobj[3], pcsmtl[3]);
+    w_l_rook = new Rook(loader, piecestheme, 'white', 'left', pcsobj[2], pcsmtl[2]);
+    w_r_rook = new Rook(loader, piecestheme, 'white', 'right', pcsobj[2], pcsmtl[2]);
+    b_l_rook = new Rook(loader, piecestheme, 'black', 'left', pcsobj[3], pcsmtl[3]);
+    b_r_rook = new Rook(loader, piecestheme, 'black', 'right', pcsobj[3], pcsmtl[3]);
 
-    w_king = new King(loader, pieces, 'white', pcsobj[4], pcsmtl[4]);
-    b_king = new King(loader, pieces, 'black', pcsobj[5], pcsmtl[5]);
+    w_king = new King(loader, piecestheme, 'white', pcsobj[4], pcsmtl[4]);
+    b_king = new King(loader, piecestheme, 'black', pcsobj[5], pcsmtl[5]);
 
-    w_queen = new Queen(loader, pieces, 'white', pcsobj[6], pcsmtl[6]);
-    b_queen = new Queen(loader, pieces, 'black', pcsobj[7], pcsmtl[7]);
+    w_queen = new Queen(loader, piecestheme, 'white', pcsobj[6], pcsmtl[6]);
+    b_queen = new Queen(loader, piecestheme, 'black', pcsobj[7], pcsmtl[7]);
 
-    w_l_knight = new Knight(loader, pieces, 'white', 'left', pcsobj[8], pcsmtl[8]);
-    w_r_knight = new Knight(loader, pieces, 'white', 'right', pcsobj[8], pcsmtl[8]);
-    b_l_knight = new Knight(loader, pieces, 'black', 'left', pcsobj[9], pcsmtl[9]);
-    b_r_knight = new Knight(loader, pieces, 'black', 'right', pcsobj[9], pcsmtl[9]);
-
-    for (var i = 0; i < 8; i++) {
-        wpawns[i] = new Pawn(loader, pieces, 'white', i, pcsobj[10], pcsmtl[10]);
-    }
+    w_l_knight = new Knight(loader, piecestheme, 'white', 'left', pcsobj[8], pcsmtl[8]);
+    w_r_knight = new Knight(loader, piecestheme, 'white', 'right', pcsobj[8], pcsmtl[8]);
+    b_l_knight = new Knight(loader, piecestheme, 'black', 'left', pcsobj[9], pcsmtl[9]);
+    b_r_knight = new Knight(loader, piecestheme, 'black', 'right', pcsobj[9], pcsmtl[9]);
 
     for (var i = 0; i < 8; i++) {
-        bpawns[i] = new Pawn(loader, pieces, 'black', i, pcsobj[11], pcsmtl[11]);
+        w_pawns[i] = new Pawn(loader, piecestheme, 'white', i, pcsobj[10], pcsmtl[10]);
     }
 
-};
-
-Board.prototype.changePieces = function(loader, pieces) {
-    // reload the board with pieces changed
-    if (pieces == 'monkey') {
-        pcsobj = monkeypcsobj;
-        pcsmtl = monkeypcsmtl;
-    } else if (pieces == 'second') {
-        pcsobj = secondpcsobj;
-        pcsmtl = secondpcsmtl;
-    } else {
-        // default is monkey
-        pcsobj = monkeypcsobj;
-        pcsmtl = monkeypcsmtl;
+    for (var i = 0; i < 8; i++) {
+        b_pawns[i] = new Pawn(loader, piecestheme, 'black', i, pcsobj[11], pcsmtl[11]);
     }
 
-    self.init(loader, pieces);
+    var pieceArray = [
+    w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
+    w_pawns[0], w_pawns[1], w_pawns[2], w_pawns[3], w_pawns[4], w_pawns[5], w_pawns[6], w_pawns[7],
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    b_pawns[7], b_pawns[6], b_pawns[5], b_pawns[4], b_pawns[3], b_pawns[2], b_pawns[1], b_pawns[0],
+    b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook
+    ];
+
 };
 
-Board.prototype.resetBoard = function(loader, pieces) {
-    self.init(loader, pieces);
+Board.prototype.resetBoard = function(loader, piecestheme) {
+    self.init(loader, piecestheme);
 };
-
-/*
-Board.prototype.cloneObj = function(obj) {
-    var i, cpy = new THREE.Object3D();
-    for (var i in obj.children) {
-        cpy.add(new THREE.Mesh(obj.children[i].geometry));
-    }
-    return cpy;
-};
-
-Board.prototype.cloneObjMtl = function(objmtl) {
-    var i, cpy = new THREE.Object3D();
-    for (var i in objmtl.children) {
-        cpy.add(new THREE.Mesh(objmtl.children[i].geometry, objmtl.children[i].material));
-    }
-    return cpy;
-};
-*/
 
 // incrementally moves piece from fw, fx to fy, fz
 Board.prototype.movePiece = function (movingPiece, fw, fx, fy, fz, fheight) {

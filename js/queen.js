@@ -1,9 +1,9 @@
-var Queen = function (loader, pieces, color, obj, mtl) {
+var Queen = function (loader, piecestheme, color, obj, mtl) {
     self = this;
-    self.init(loader, pieces, color, obj, mtl);
+    self.init(loader, piecestheme, color, obj, mtl);
 }
 
-Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
+Queen.prototype.init = function (loader, piecestheme, color, obj, mtl) {
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {
             object.scale.x = 3;

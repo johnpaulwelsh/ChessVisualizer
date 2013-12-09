@@ -29,12 +29,30 @@
 
         <script>
             function sendGameID(shortGameID) {
-                var lg = new LoadGame(shortGameID);
+                var piecestheme = get_radio_value();
+                var lg = new LoadGame(shortGameID, piecestheme);
+            }
+
+            // Adapted from...
+            // http://www.webdevelopersnotes.com/tips/html/finding_the_value_of_a_radio_button.php3
+            function get_radio_value() {
+                for (var i=0; i < document.userform.piecestheme.length; i++) {
+                   if (document.userform.piecestheme[i].checked) {
+                      var rad_val = document.userform.piecestheme[i].value;
+                   }
+                }
+                return rad_val;
             }
         </script>
 
-        <form>
-        Game ID: <input type="text" name="shortGameID">
+        <form name="userform">
+        Game ID --
+        <input type="text" name="shortGameID">
+        <br>
+        Pieces Theme --
+        Monkey<input type="radio" name="piecestheme" value="monkey">
+        Second<input type="radio" name="piecestheme" value="second">
+        <br>
         <button type="button" onclick="sendGameID(this.form)">Submit</button>
         </form>
     </body>

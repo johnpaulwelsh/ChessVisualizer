@@ -9,12 +9,12 @@ var moves;
 var tempArray;
 var whitetime;
 
-var LoadGame = function (shortGameID) {
+var LoadGame = function (shortGameID, piecestheme) {
     self = this;
-    self.init(shortGameID);
+    self.init(shortGameID, piecestheme);
 }
 
-LoadGame.prototype.init = function (shortGameID) {
+LoadGame.prototype.init = function (shortGameID, piecestheme) {
     gameID = gameID + shortGameID;
 
     $(document).ready(function() {
@@ -49,5 +49,5 @@ LoadGame.prototype.init = function (shortGameID) {
         });
     });
 
-    var chessgame = new ChessGame();
+    var chessgame = new ChessGame(piecestheme);
 }
