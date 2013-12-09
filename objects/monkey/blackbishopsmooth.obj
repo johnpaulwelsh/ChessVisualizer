@@ -1,6 +1,6 @@
-# Blender v2.66 (sub 1) OBJ File: 'whitebishop.blend'
+# Blender v2.66 (sub 1) OBJ File: 'blackbishopsmooth.blend'
 # www.blender.org
-mtllib whitebishop.mtl
+mtllib blackbishopsmooth.mtl
 o Cube
 v 0.719729 0.084341 -0.827515
 v 0.583417 0.652122 -0.648935
