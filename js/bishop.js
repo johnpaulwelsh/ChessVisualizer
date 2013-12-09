@@ -20,21 +20,11 @@ Bishop.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                if (pieces == 'monkey') {
-                    object.translateX(-44);
-                    object.translateZ(40);
-                } else {
-                    object.translateX(-47);
-                    object.translateZ(40);
-                }
+                object.translateX(-44);
+                object.translateZ(40);
             } else {
-                if (pieces == 'monkey') {
-                    object.translateX(-5);
-                    object.translateZ(40);
-                } else {
-                    object.translateX(-5); // may need to change
-                    object.translateZ(40);
-                }
+                object.translateX(0);
+                object.translateZ(40);
             }
         });
 
@@ -54,11 +44,11 @@ Bishop.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                object.translateX(-5);
-                object.translateZ(-65);
+                object.translateX(0);
+                object.translateZ(-60);
             } else {
-                object.translateX(-46);
-                object.translateZ(-65);
+                object.translateX(-44);
+                object.translateZ(-60);
             }
         });
     }

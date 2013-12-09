@@ -2,13 +2,22 @@ Acually moving pieces
 -Just subtracting the 2nd value of the Move string from the 4th (e.g. QA4D4, subtracting 100-97=3) and multiplying by the length of a square (20?) and, of course, subtracting the 3rd value from the 5th to get the Z-distance.
 -Of course, don't forget to store it in the new index of the array and store 0 or 1 into the old index of the array
 
+
+
+
+
 Storing pieces
 -Make an array with all empty slots being a number (0? 1?) and each chess piece stored at a specific position in the array. To get a position in the array, 8*(ASCII value-96)+Numerical value of square
+
+var pieceArray = [w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook, w_pawn[0], w_pawn[1], w_pawn[2], w_pawn[3], w_pawn[4], w_pawn[5], w_pawn[6], w_pawn[7], 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, b_pawn[7], b_pawn[6], b_pawn[5], b_pawn[4], b_pawn[3], b_pawn[2], b_pawn[1], b_pawn[0], b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook]
+
+
 
 Castling
 -hard-code a case where for pwxyz iff p=K && |x-z|=2, move(w, x, w, z) and move(w, (4.5+1.75*(z-x)), w, (z-x)/2+x)
 
+
+
+
 Collisions
 -In theory no pieces should collide unless they are enemies, so auto-removing the piece already in a square in the case of a collision seems like the best answer
-
-Anything else I missed?

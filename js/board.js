@@ -129,7 +129,7 @@ var Board = function(loader, pieces) {
 // Initialize board by placing pieces into proper spots
 Board.prototype.init = function (loader, pieces) {
     // chessboard
-    loader.load('objects/chessboard.obj', 'objects/chessboard.mtl', function (object) {
+    loader.load('objects/chessboardrotated.obj', 'objects/chessboardrotated.mtl', function (object) {
         object.scale.x = 20;
         object.scale.y = 20;
         object.scale.z = 20;

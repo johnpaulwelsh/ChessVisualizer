@@ -4,7 +4,6 @@ var Queen = function (loader, pieces, color, obj, mtl) {
 }
 
 Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
-
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {
             object.scale.x = 3;
@@ -13,13 +12,8 @@ Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
             
             game.add(object);
 
-            if (pieces == 'monkey') {
-                object.translateX(-19);
-                object.translateZ(40);
-            } else {
-                object.translateX(-17); // may need to change
-                object.translateZ(38);
-            }
+            object.translateX(-28);
+            object.translateZ(40);
         });
     } else {
         loader.load(obj, mtl, function (object) {
@@ -29,8 +23,8 @@ Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
             
             game.add(object);
 
-            object.translateX(-18);
-            object.translateZ(-65);
+            object.translateX(-28);
+            object.translateZ(-60);
         });
     }
 }

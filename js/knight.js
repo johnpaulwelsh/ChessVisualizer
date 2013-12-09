@@ -4,8 +4,8 @@ var Knight = function (loader, pieces, color, side, obj, mtl) {
 }
 
 Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
+    
     if (color == 'white') {
-
         loader.load(obj, mtl, function (object) {
             if (pieces == 'monkey') {
                 object.scale.x = 2;
@@ -17,15 +17,14 @@ Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
                 object.scale.z = 3;
             }
 
-            wknight = object;
-            game.add(wknight);
+            game.add(object);
 
             if (side == 'left') {
-                wknight.translateX(-59);
-                wknight.translateZ(40);
+                object.translateX(-59);
+                object.translateZ(40);
             } else {
-                wknight.translateX(10);
-                wknight.translateZ(40);
+                object.translateX(17);
+                object.translateZ(40);
             }
         });
 
@@ -45,11 +44,11 @@ Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                object.translateX(10);
-                object.translateZ(-65);
+                object.translateX(17);
+                object.translateZ(-60);
             } else {
                 object.translateX(-59);
-                object.translateZ(-65);
+                object.translateZ(-60);
             }
         });
     }
