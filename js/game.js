@@ -24,6 +24,7 @@ ChessGame.prototype.init = function (piecestheme) {
     
     camera.position.z = 70;
     camera.position.y = 70;
+    camera.position.x = 0;
 
     // Use these values for when it's black's turn
     //camera.position.z = -90;

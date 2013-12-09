@@ -16,12 +16,12 @@ var LoadGame = function (shortGameID, piecestheme) {
 
 LoadGame.prototype.init = function (shortGameID, piecestheme) {
     gameID = gameID + shortGameID;
+    window.alert(gameID);
 
     $(document).ready(function() {
         // Using the core $.ajax() method
         $.getJSON(gameID, function(resp) {
             $.each(resp, function(key, value) {
-                
                 switch (key) {
                     case "lastmovenumber":
                         lastmovenumber = value;

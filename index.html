@@ -28,9 +28,10 @@
         <script src="js/pawn.js"></script>
 
         <script>
-            function sendGameID(shortGameID) {
+            function sendGameID(formdata) {
+                var sgID = document.userform.shortGameID.value;
                 var piecestheme = get_radio_value();
-                var lg = new LoadGame(shortGameID, piecestheme);
+                var lg = new LoadGame(sgID, piecestheme);
             }
 
             // Adapted from...
