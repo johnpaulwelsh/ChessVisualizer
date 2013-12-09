@@ -1,39 +1,56 @@
-var Knight = function () {
-	// white knight
-    loader.load(pcsobj[8], pcsmtl[8], function (object) {
-        if (pieces == 'monkey') {
-            object.scale.x = 2;
-            object.scale.y = 3;
-            object.scale.z = 2;
-        } else {
-            object.scale.x = 3;
-            object.scale.y = 5;
-            object.scale.z = 3;
-        }
+var Knight = function (loader, pieces, color, side, obj, mtl) {
+    self = this;
+    self.init(loader, pieces, color, side, obj, mtl);
+}
 
-        wknight = object;
-        game.add(wknight);
+Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
+    if (color == 'white') {
 
-        wknight.translateX(-59);
-        wknight.translateZ(40);
-    });
+        loader.load(obj, mtl, function (object) {
+            if (pieces == 'monkey') {
+                object.scale.x = 2;
+                object.scale.y = 3;
+                object.scale.z = 2;
+            } else {
+                object.scale.x = 3;
+                object.scale.y = 5;
+                object.scale.z = 3;
+            }
 
-    // black knight
-    loader.load(pcsobj[9], pcsmtl[9], function (object) {
-        if (pieces == 'monkey') {
-            object.scale.x = 2;
-            object.scale.y = 3;
-            object.scale.z = 2;
-        } else {
-            object.scale.x = 3;
-            object.scale.y = 5;
-            object.scale.z = 3;
-        }
+            wknight = object;
+            game.add(wknight);
 
-        wknight = object;
-        game.add(wknight);
+            if (side == 'left') {
+                wknight.translateX(-59);
+                wknight.translateZ(40);
+            } else {
+                wknight.translateX(10);
+                wknight.translateZ(40);
+            }
+        });
 
-        wknight.translateX(-59);
-        wknight.translateZ(-65);
-    }); 
+    } else {
+
+        loader.load(obj, mtl, function (object) {
+            if (pieces == 'monkey') {
+                object.scale.x = 2;
+                object.scale.y = 3;
+                object.scale.z = 2;
+            } else {
+                object.scale.x = 3;
+                object.scale.y = 5;
+                object.scale.z = 3;
+            }
+
+            game.add(object);
+
+            if (side == 'left') {
+                object.translateX(-59);
+                object.translateZ(-65);
+            } else {
+                object.translateX(10);
+                object.translateZ(-65);
+            }
+        });
+    }
 }

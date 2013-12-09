@@ -1,12 +1,12 @@
-var Bishop = function (loader, pieces, color, side) {
+var Bishop = function (loader, pieces, color, side, obj, mtl) {
     self = this;
-    self.init(loader, pieces, color, side);
+    self.init(loader, pieces, color, side, obj, mtl);
 }
 
-Bishop.prototype.init = function (loader, pieces, color, side) {
+Bishop.prototype.init = function (loader, pieces, color, side, obj, mtl) {
+    
     if (color == 'white') {
-        // white bishop
-        loader.load(pcsobj[0], pcsmtl[0], function (object) {
+        loader.load(obj, mtl, function (object) {
             if (pieces == 'monkey') {
                 object.scale.x = 4;
                 object.scale.y = 6;
@@ -17,20 +17,30 @@ Bishop.prototype.init = function (loader, pieces, color, side) {
                 object.scale.z = 3;
             }
             
-            wbishop = object;
-            game.add(wbishop);
+            game.add(object);
 
-            if (pieces == 'monkey') {
-                wbishop.translateX(-44);
-                wbishop.translateZ(40);
+            if (side == 'left') {
+                if (pieces == 'monkey') {
+                    object.translateX(-44);
+                    object.translateZ(40);
+                } else {
+                    object.translateX(-47);
+                    object.translateZ(40);
+                }
             } else {
-                wbishop.translateX(-47);
-                wbishop.translateZ(40);
+                if (pieces == 'monkey') {
+                    object.translateX(-5);
+                    object.translateZ(40);
+                } else {
+                    object.translateX(-5); // may need to change
+                    object.translateZ(40);
+                }
             }
         });
+
     } else {
-        // black bishop
-        loader.load(pcsobj[1], pcsmtl[1], function (object) {
+        
+        loader.load(obj, mtl, function (object) {
             if (pieces == 'monkey') {
                 object.scale.x = 4;
                 object.scale.y = 6;
@@ -41,11 +51,15 @@ Bishop.prototype.init = function (loader, pieces, color, side) {
                 object.scale.z = 3;
             }
             
-            bbishop = object;
-            game.add(bbishop);
+            game.add(object);
 
-            bbishop.translateX(-46);
-            bbishop.translateZ(-65);
+            if (side == 'left') {
+                object.translateX(-46);
+                object.translateZ(-65);
+            } else {
+                object.translateX(-5);
+                object.translateZ(-65);
+            }
         });
     }
 }

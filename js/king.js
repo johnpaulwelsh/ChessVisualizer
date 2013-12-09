@@ -1,27 +1,33 @@
-var King = function () {
-	// white king
-    loader.load(pcsobj[4], pcsmtl[4], function (object) {
-        object.scale.x = 3;
-        object.scale.y = 6;
-        object.scale.z = 3;
-        
-        wking = object;
-        game.add(wking);
+var King = function (loader, pieces, color, obj, mtl) {
+	
+    self = this;
+    self.init(loader, pieces, color, obj, mtl);
+}
 
-        wking.translateX(-34);
-        wking.translateZ(40);
-    });
+King.prototype.init = function (loader, pieces, color, obj, mtl) {
+    if (color == 'white') {
+        // white king
+        loader.load(obj, mtl, function (object) {
+            object.scale.x = 3;
+            object.scale.y = 6;
+            object.scale.z = 3;
+            
+            game.add(object);
 
-    // black king
-    loader.load( pcsobj[5], pcsmtl[5], function ( object ) {
-        object.scale.x = 3;
-        object.scale.y = 6;
-        object.scale.z = 3;
-        
-        bking = object;
-        game.add( bking );
+            object.translateX(-34);
+            object.translateZ(40);
+        });
+    } else {
+        // black king
+        loader.load(obj, mtl, function (object) {
+            object.scale.x = 3;
+            object.scale.y = 6;
+            object.scale.z = 3;
+            
+            game.add(object);
 
-        bking.translateX( -33 );
-        bking.translateZ( -65 );
-    } );
+            object.translateX( -33 );
+            object.translateZ( -65 );
+        } );
+    }
 }
