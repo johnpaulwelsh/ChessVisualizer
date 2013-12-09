@@ -136,6 +136,30 @@ Board.prototype.init = function (loader, pieces) {
         game.add(board);
     });
 
+/*
+    w_l_bishop = new Bishop(loader, pieces, 'white', 'left');
+    w_r_bishop = new Bishop(loader, pieces, 'white', 'right');
+    b_l_bishop = new Bishop(loader, pieces, 'black', 'left');
+    b_r_bishop = new Bishop(loader, pieces, 'black', 'right');
+
+    w_queen = new Queen(loader, pieces, 'white');
+    b_queen = new Queen(loader, pieces, 'black');
+
+    w_king = new King(loader, pieces, 'white');
+    b_king = new King(loader, pieces, 'black');
+
+    w_l_rook = new Rook(loader, pieces, 'white', 'left');
+    w_r_rook = new Rook(loader, pieces, 'white', 'right');
+    b_l_rook = new Rook(loader, pieces, 'black', 'left');
+    b_r_rook = new Rook(loader, pieces, 'black', 'right');
+
+    w_l_knight = new Knight(loader, pieces, 'white', 'left');
+    w_r_knight = new Knight(loader, pieces, 'white', 'right');
+    b_l_knight = new Knight(loader, pieces, 'black', 'left');
+    b_r_knight = new Knight(loader, pieces, 'black', 'right');
+*/
+    // pawns
+
     // white bishop
     loader.load(pcsobj[0], pcsmtl[0], function (object) {
         if (pieces == 'monkey') {
