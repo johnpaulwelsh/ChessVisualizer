@@ -44,10 +44,10 @@ Rook.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                object.translateX(-75);
+                object.translateX(25);
                 object.translateZ(-65);
             } else {
-                object.translateX(25);
+                object.translateX(-75);
                 object.translateZ(-65);
             }
         });

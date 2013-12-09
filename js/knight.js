@@ -45,10 +45,10 @@ Knight.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                object.translateX(-59);
+                object.translateX(10);
                 object.translateZ(-65);
             } else {
-                object.translateX(10);
+                object.translateX(-59);
                 object.translateZ(-65);
             }
         });

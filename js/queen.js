@@ -1,5 +1,4 @@
-var Queen = function (loader, pieces, color, obj, mtl) {
-    
+var Queen = function (loader, pieces, color, obj, mtl) {    
     self = this;
     self.init(loader, pieces, color, obj, mtl);
 }

@@ -54,10 +54,10 @@ Bishop.prototype.init = function (loader, pieces, color, side, obj, mtl) {
             game.add(object);
 
             if (side == 'left') {
-                object.translateX(-46);
+                object.translateX(-5);
                 object.translateZ(-65);
             } else {
-                object.translateX(-5);
+                object.translateX(-46);
                 object.translateZ(-65);
             }
         });

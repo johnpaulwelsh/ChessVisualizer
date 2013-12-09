@@ -1,27 +1,73 @@
-var Pawn = function () {
-	// white pawn
-    loader.load(pcsobj[10], pcsmtl[10], function (object) {
-        object.scale.x = 3;
-        object.scale.y = 3;
-        object.scale.z = 3;
+var Pawn = function (loader, pieces, color, position, obj, mtl) {
+    self = this;
+    self.init(loader, pieces, color, position, obj, mtl);
+}
 
-        wpawns[0] = object;
-        game.add(wpawns[0]);
+Pawn.prototype.init = function (loader, pieces, color, position, obj, mtl) {
+	
+    if (color == 'white') {
+        loader.load(obj, mtl, function (object) {
+            object.scale.x = 3;
+            object.scale.y = 3;
+            object.scale.z = 3;
 
-        wpawns[0].translateX(-77);
-        wpawns[0].translateZ(22);
-    });
+            game.add(object);
 
-    // black pawn
-    loader.load(pcsobj[11], pcsmtl[11], function (object) {
-        object.scale.x = 3;
-        object.scale.y = 3;
-        object.scale.z = 3;
+            switch (position) {
+                case 0:
+                    object.translateX(-77);
+                    object.translateZ(22);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                default:
+                    break;
+            }
+        });
 
-        bpawns[0] = object;
-        game.add(bpawns[0]);
+    } else {
 
-        bpawns[0].translateX(-77);
-        bpawns[0].translateZ(-50);
-    });
+        loader.load(obj, mtl, function (object) {
+            object.scale.x = 3;
+            object.scale.y = 3;
+            object.scale.z = 3;
+
+            game.add(object);
+
+            switch (position) {
+                case 0:
+                    object.translateX(-77);
+                    object.translateZ(-50);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
 }
