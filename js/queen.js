@@ -1,4 +1,4 @@
-var Queen = function (loader, pieces, color, obj, mtl) {    
+var Queen = function (loader, pieces, color, obj, mtl) {
     self = this;
     self.init(loader, pieces, color, obj, mtl);
 }
@@ -12,7 +12,7 @@ Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
             
             game.add(object);
 
-            object.translateX(-28);
+            object.translateX(-30);
             object.translateZ(40);
         });
     } else {
@@ -23,7 +23,7 @@ Queen.prototype.init = function (loader, pieces, color, obj, mtl) {
             
             game.add(object);
 
-            object.translateX(-28);
+            object.translateX(-30);
             object.translateZ(-60);
         });
     }

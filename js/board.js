@@ -113,13 +113,9 @@ var Board = function(loader, pieces) {
     if (pieces == 'monkey') {
         pcsobj = monkeypcsobj;
         pcsmtl = monkeypcsmtl;
-    } else if (pieces == 'second') {
+    } else {
         pcsobj = secondpcsobj;
         pcsmtl = secondpcsmtl;
-    } else {
-        // default is monkey
-        pcsobj = monkeypcsobj;
-        pcsmtl = monkeypcsmtl;
     }
 
     // initialize board
@@ -158,15 +154,15 @@ Board.prototype.init = function (loader, pieces) {
     w_r_knight = new Knight(loader, pieces, 'white', 'right', pcsobj[8], pcsmtl[8]);
     b_l_knight = new Knight(loader, pieces, 'black', 'left', pcsobj[9], pcsmtl[9]);
     b_r_knight = new Knight(loader, pieces, 'black', 'right', pcsobj[9], pcsmtl[9]);
-/*
-    for (int i = 0; i < 8; i++) {
+
+    for (var i = 0; i < 8; i++) {
         wpawns[i] = new Pawn(loader, pieces, 'white', i, pcsobj[10], pcsmtl[10]);
     }
 
-    for (int i = 0; i < 8; i++) {
+    for (var i = 0; i < 8; i++) {
         bpawns[i] = new Pawn(loader, pieces, 'black', i, pcsobj[11], pcsmtl[11]);
     }
-*/
+
 };
 
 Board.prototype.changePieces = function(loader, pieces) {
