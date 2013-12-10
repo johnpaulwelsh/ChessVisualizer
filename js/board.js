@@ -1,40 +1,18 @@
 // John Sullivan and John Paul Welsh
 
-// Global variable for the board
-var brd;
-
-// Global variables to refer to each white piece on the board
-var w_king, w_queen, w_l_bishop, w_r_bishop, w_l_knight, w_r_knight, w_l_rook, w_r_rook;
-// These will be numbered 0-7
-var w_pawns = [];
-
-// Global variables to refer to each black piece on the board
-var b_king, b_queen, b_l_bishop, b_r_bishop, b_l_knight, b_r_knight, b_l_rook, b_r_rook;
-// These will be numbered 0-7
-var b_pawns = [];
-
-// Refers to 'this' (the board object, not the board model)
 var self;
+
+var piece_board;
+
+var w_king, w_queen, w_l_bishop, w_r_bishop, w_l_knight, w_r_knight, w_l_rook, w_r_rook;
+var w_pawns = [];
+var b_king, b_queen, b_l_bishop, b_r_bishop, b_l_knight, b_r_knight, b_l_rook, b_r_rook;
+var b_pawns = [];
 
 var pcsobj;
 var pcsmtl;
 
 var pieceArray = [];
-
-/*
-0 = white bishop
-1 = black bishop
-2 = white rook
-3 = black rook
-4 = white king
-5 = black king
-6 = white queen
-7 = black queen
-8 = white knight
-9 = black knight
-10 = white pawn
-11 = black pawn
-*/
 
 var monkeypcsobj = [
     'objects/monkey/whitebishop.obj',
@@ -116,14 +94,20 @@ var Board = function(loader, piecestheme) {
 
 // Initialize board by placing piecestheme into proper spots
 Board.prototype.init = function (loader, piecestheme) {
+    
+    piece_board = new THREE.Object3D();
+
     // chessboard
     loader.load('objects/chessboardrotated.obj', 'objects/chessboardrotated.mtl', function (object) {
         object.scale.x = 20;
         object.scale.y = 20;
         object.scale.z = 20;
 
-        game.add(object);
+        chessboard = object;
+        piece_board.add(chessboard);
     });
+
+    game.add(piece_board);
 
     w_l_bishop = new Bishop(loader, piecestheme, 'white', 'left', pcsobj[0], pcsmtl[0]);
     w_r_bishop = new Bishop(loader, piecestheme, 'white', 'right', pcsobj[0], pcsmtl[0]);
@@ -154,34 +138,32 @@ Board.prototype.init = function (loader, piecestheme) {
         b_pawns[i] = new Pawn(loader, piecestheme, 'black', i, pcsobj[11], pcsmtl[11]);
     }
 
-    var pieceArray = [
-    w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
-    w_pawns[0], w_pawns[1], w_pawns[2], w_pawns[3], w_pawns[4], w_pawns[5], w_pawns[6], w_pawns[7],
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
-    b_pawns[7], b_pawns[6], b_pawns[5], b_pawns[4], b_pawns[3], b_pawns[2], b_pawns[1], b_pawns[0],
-    b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook
+    pieceArray = [
+        w_l_rook,   w_l_knight, w_l_bishop, w_queen,    w_king,     w_r_bishop, w_r_knight, w_r_rook,
+        w_pawns[0], w_pawns[1], w_pawns[2], w_pawns[3], w_pawns[4], w_pawns[5], w_pawns[6], w_pawns[7],
+        1,          1,          1,          1,          1,          1,          1,          1,
+        1,          1,          1,          1,          1,          1,          1,          1,
+        1,          1,          1,          1,          1,          1,          1,          1,
+        1,          1,          1,          1,          1,          1,          1,          1,
+        b_pawns[7], b_pawns[6], b_pawns[5], b_pawns[4], b_pawns[3], b_pawns[2], b_pawns[1], b_pawns[0],
+        b_r_rook,   b_r_knight, b_r_bishop, b_queen,    b_king,     b_l_bishop, b_l_knight, b_l_rook
     ];
-
 };
 
-Board.prototype.resetBoard = function(loader, piecestheme) {
-    self.init(loader, piecestheme);
-};
+// Incrementally moves piece from fw, fx to fy, fz
+Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
+    if (pieceArray[(fz-1)*8+(fy-97)] != 1)
+        remove(fy, fz);
 
-// incrementally moves piece from fw, fx to fy, fz
-Board.prototype.movePiece = function (movingPiece, fw, fx, fy, fz, fheight) {
-    if (movingPiece.position.y < fheight) {
-        movingPiece.translateY(1);
-    }
+    pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
 
-    if (movingPiece.position.x < fy) {
-        movingPiece.translateX(1);
-    }
+    //pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
+    //pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
+    //pieceArray[(fw-64)*8+fx].translateY(-fheight);
+    //pieceArray[(fy-64)*8+fz] = pieceArray[(fw-64)*8+fx];
+    //pieceArray[(fw-64)*8+fx] = 1;
+}
 
-    if (movingPiece.position.x < fy) {
-        movingPiece.translateY(1);
-    }
+function remove(fy, fz) {
+    console.log("Removed at " + fy + " " + fz);
 }

@@ -2,7 +2,7 @@
 
 var self;
 var container, stats;
-var camera, scene, renderer;
+var camera, scene, renderer, loader;
 var game, board;
 var pcs;
 var cameraAngle;
@@ -11,12 +11,14 @@ var windowHalfY = window.innerHeight / 2;
 
 var moving = false;
 
-var ChessGame = function (piecestheme) {
+var ChessGame = function (piecestheme, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
     self = this;
-    self.init(piecestheme);
+    self.init(piecestheme, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime);
 }
 
-ChessGame.prototype.init = function (piecestheme) {
+ChessGame.prototype.init = function (
+    piecestheme, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
+
     container = document.createElement('div');
     document.body.appendChild(container);
 
@@ -39,15 +41,15 @@ ChessGame.prototype.init = function (piecestheme) {
     directionalLightOne.position.set(0.5, 2, 1).normalize(); // position - origin = direction
     scene.add(directionalLightOne);
 
-    var directionalLightTwo = new THREE.DirectionalLight(0xffffff); // yellow light is ffff00
+    var directionalLightTwo = new THREE.DirectionalLight(0xffff00); // yellow light is ffff00
     directionalLightTwo.position.set(0.5, 5, -10).normalize();
     scene.add(directionalLightTwo);
 
     game = new THREE.Object3D();
 
-    var loader = new THREE.OBJMTLLoader();
+    loader = new THREE.OBJMTLLoader();
     
-    var board = new Board(loader, piecestheme);
+    board = new Board(loader, piecestheme);
 
 	scene.add(game);
     game.position.x = 15;
@@ -62,6 +64,8 @@ ChessGame.prototype.init = function (piecestheme) {
     var gui = new dat.GUI();
     var f1 = gui.addFolder('Game controls');
     cameraAngle = f1.add(camera.position, 'y', 5, 150);
+
+    readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime);
 
     render();
 }
@@ -92,45 +96,38 @@ function onWindowResize() {
 
 // Iterates through the array read from the server and makes each move.
 // No more than one move a second
-ChessGame.prototype.readMoves = function () {
-    for (s in moves) {
+function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
+    //for (s in moves) {
         setTimeout(function() {
+            var s = moves[0];
+            console.log(s);
             var p = s.charCodeAt(0);
             var w = s.charCodeAt(1);
-            var x = s.charCodeAt(2);
+            var x = s.charAt(2);
             var y = s.charCodeAt(3);
-            var z = s.charCodeAt(4);
-            if (p == 75 && Math.abs(x-z) == 2)
-                move(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
-            if (p == 78)
-                move(w,x,y,z,25);
-            else
-                move(w, x, y, z, 0);
-        }, 1000);
-    }
+            var z = s.charAt(4);
+            
+            
+            // The king is moving two spaces, so we know he is castling
+            //if (p == 75 && Math.abs(x-z) == 2)
+            //    movePiece(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
+            // The piece is a knight, so we know it has to jump
+            //if (p == 78)
+            //    movePiece(w,x,y,z,25);
+            // Any other piece does not have to jump
+            //else
+                movePiece(w, x, y, z, 25);
+        }, 5000);
+    //}
 }
 
 // Function to move pieces
-ChessGame.prototype.move = function (fw, fx, fy, fz, fheight) {
-    if (pieceArray[(fy-64)*8+fz]!=1)
-        remove(fy, fz);
-    pieceArray[(fw-64)*8+fx].translateY(fheight);
-    pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
-    pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
-    pieceArray[(fw-64)*8+fx].translateY(-fheight);
-    pieceArray[(fy-64)*8+fz]=pieceArray[(fw-64)*8+fx];
-    pieceArray[(fw-64)*8+fx]=1;
+function movePiece(fw, fx, fy, fz, fheight) {
+    board.movePiece(fw, fx, fy, fz, fheight);
 }
 
 function render() {
     requestAnimationFrame(render);
-
     camera.lookAt(scene.position);
-
-    // PUT LOGIC IN HERE FOR WHEN PIECES ARE MOVING
-    if (moving == true) {
-        board.movePiece(movingPiece, fw, fx, fy, fz, fheight);
-    }
-
     renderer.render(scene, camera);
 }

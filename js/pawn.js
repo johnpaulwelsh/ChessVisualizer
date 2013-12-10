@@ -1,3 +1,5 @@
+var piece_pawn;
+
 var Pawn = function (loader, piecestheme, color, position, obj, mtl) {
     self = this;
     self.init(loader, piecestheme, color, position, obj, mtl);
@@ -5,13 +7,16 @@ var Pawn = function (loader, piecestheme, color, position, obj, mtl) {
 
 Pawn.prototype.init = function (loader, piecestheme, color, position, obj, mtl) {
 
+    piece_pawn = new THREE.Object3D();
+
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {
             object.scale.x = 3;
             object.scale.y = 3;
             object.scale.z = 3;
 
-            game.add(object);
+            this_piece = object;
+            piece_pawn.add(this_piece);
 
             switch (position) {
                 case 0:
@@ -49,6 +54,7 @@ Pawn.prototype.init = function (loader, piecestheme, color, position, obj, mtl) 
                 default:
                     break;
             }
+            piece_board.add(piece_pawn);
         });
 
     } else {
@@ -58,7 +64,8 @@ Pawn.prototype.init = function (loader, piecestheme, color, position, obj, mtl) 
             object.scale.y = 3;
             object.scale.z = 3;
 
-            game.add(object);
+            black_pawn = object;
+            piece_pawn.add(black_pawn);
 
             switch (position) {
                 case 0:
@@ -98,4 +105,9 @@ Pawn.prototype.init = function (loader, piecestheme, color, position, obj, mtl) 
             }
         });
     }
+    piece_board.add(piece_pawn);
+}
+
+Pawn.prototype.moveY = function (distance) {
+    piece_pawn.translateY(distance);
 }

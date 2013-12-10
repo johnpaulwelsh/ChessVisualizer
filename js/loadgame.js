@@ -1,5 +1,6 @@
 // John Sullivan and John Paul Welsh
 
+var self;
 var gameID = "https://10.11.18.65/cg/chess/";
 var lastmovenumber;
 var blacktime;
@@ -16,38 +17,33 @@ var LoadGame = function (shortGameID, piecestheme) {
 
 LoadGame.prototype.init = function (shortGameID, piecestheme) {
     gameID = gameID + shortGameID;
-    window.alert(gameID);
 
     $(document).ready(function() {
         // Using the core $.ajax() method
         $.getJSON(gameID, function(resp) {
             $.each(resp, function(key, value) {
-                switch (key) {
-                    case "lastmovenumber":
+                
+                if (key == "lastmovenumber")
                         lastmovenumber = value;
-                        break;
-                    case "blacktime":
+                if (key == "blacktime")
                         blacktime = value;
-                        break;
-                    case "gameover":
+                if (key == "gameover")
                         gameover = value;
-                        break;
-                    case "whitesturn":
+                if (key == "whitesturn")
                         whitesturn = value;
-                        break;
-                    case "moves":
+                if (key == "moves")
                         moves = value[0].split(",");
-                        break;
-                    case "whitetime":
+                if (key == "whitetime")
                         whitetime = value;
-                        break;
-                    default:
-                        console.log("Somehow it wasn't any of those fields.");
-                        break;
-                }
             })
         });
+    
+        // We need to wait 3 seconds to make sure we are done talking to the server
+        setTimeout(function() {
+            var chessgame = new ChessGame(
+                piecestheme, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime);
+            },
+            3000
+        );
     });
-
-    var chessgame = new ChessGame(piecestheme);
 }
