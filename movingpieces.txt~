@@ -56,24 +56,3 @@ Castling
 
 Collisions
 -In theory no pieces should collide unless they are enemies, so auto-removing the piece already in a square in the case of a collision seems like the best answer
-
-
-
-
-
-
-
-
-
-FIX THIS. THE TOP LINE IS CORRECT
-
-
-
-
-pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
-
-//pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
-//pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
-//pieceArray[(fw-64)*8+fx].translateY(-fheight);
-//pieceArray[(fy-64)*8+fz] = pieceArray[(fw-64)*8+fx];
-//pieceArray[(fw-64)*8+fx] = 1;

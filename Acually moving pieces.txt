@@ -72,8 +72,8 @@ FIX THIS. THE TOP LINE IS CORRECT
 
 pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
 
-//pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
-//pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
-//pieceArray[(fw-64)*8+fx].translateY(-fheight);
-//pieceArray[(fy-64)*8+fz] = pieceArray[(fw-64)*8+fx];
-//pieceArray[(fw-64)*8+fx] = 1;
+//pieceArray[(fx-1)*8+(fw-97)].moveX((fy-fw)*100/7);
+//pieceArray[(fx-1)*8+(fw-97)].moveZ((fz-fx)*100/7);
+//pieceArray[(fx-1)*8+(fw-97)].moveY(-fheight);
+//pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fw-64)*8+fx];
+//pieceArray[(fx-1)*8+(fw-97)] = 1;

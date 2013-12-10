@@ -5,9 +5,11 @@ var self;
 var piece_board;
 
 var w_king, w_queen, w_l_bishop, w_r_bishop, w_l_knight, w_r_knight, w_l_rook, w_r_rook;
-var w_pawns = [];
+//var w_pawns = [];
 var b_king, b_queen, b_l_bishop, b_r_bishop, b_l_knight, b_r_knight, b_l_rook, b_r_rook;
-var b_pawns = [];
+//var b_pawns = [];
+var w_pawnlist;
+var b_pawnlist;
 
 var pcsobj;
 var pcsmtl;
@@ -130,23 +132,18 @@ Board.prototype.init = function (loader, piecestheme) {
     b_l_knight = new Knight(loader, piecestheme, 'black', 'left', pcsobj[9], pcsmtl[9]);
     b_r_knight = new Knight(loader, piecestheme, 'black', 'right', pcsobj[9], pcsmtl[9]);
 
-    for (var i = 0; i < 8; i++) {
-        w_pawns[i] = new Pawn(loader, piecestheme, 'white', i, pcsobj[10], pcsmtl[10]);
-    }
-
-    for (var i = 0; i < 8; i++) {
-        b_pawns[i] = new Pawn(loader, piecestheme, 'black', i, pcsobj[11], pcsmtl[11]);
-    }
+    w_pawnlist = new PawnList(loader, 'white', pcsobj[10], pcsmtl[10]);
+    b_pawnlist = new PawnList(loader, 'black', pcsobj[11], pcsmtl[11]);
 
     pieceArray = [
-        w_l_rook,   w_l_knight, w_l_bishop, w_queen,    w_king,     w_r_bishop, w_r_knight, w_r_rook,
-        w_pawns[0], w_pawns[1], w_pawns[2], w_pawns[3], w_pawns[4], w_pawns[5], w_pawns[6], w_pawns[7],
-        1,          1,          1,          1,          1,          1,          1,          1,
-        1,          1,          1,          1,          1,          1,          1,          1,
-        1,          1,          1,          1,          1,          1,          1,          1,
-        1,          1,          1,          1,          1,          1,          1,          1,
-        b_pawns[7], b_pawns[6], b_pawns[5], b_pawns[4], b_pawns[3], b_pawns[2], b_pawns[1], b_pawns[0],
-        b_r_rook,   b_r_knight, b_r_bishop, b_queen,    b_king,     b_l_bishop, b_l_knight, b_l_rook
+        w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
+        w_pawnlist[0], w_pawnlist[1], w_pawnlist[2], w_pawnlist[3], w_pawnlist[4], w_pawnlist[5], w_pawnlist[6], w_pawnlist[7],
+        1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1,
+        b_pawnlist[7], b_pawnlist[6], b_pawnlist[5], b_pawnlist[4], b_pawnlist[3], b_pawnlist[2], b_pawnlist[1], b_pawnlist[0],
+        b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook
     ];
 };
 
@@ -155,7 +152,7 @@ Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
     if (pieceArray[(fz-1)*8+(fy-97)] != 1)
         remove(fy, fz);
 
-    pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
+    pieceArray[(fx-1)*8+(fw-97)].translateY(fheight);
 
     //pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
     //pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
