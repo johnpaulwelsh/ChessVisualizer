@@ -1,3 +1,5 @@
+// John Sullivan and John Paul Welsh
+
 var King = function (loader, piecestheme, color, obj, mtl) {
     self = this;
     self.init(loader, piecestheme, color, obj, mtl);

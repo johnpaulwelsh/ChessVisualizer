@@ -134,7 +134,7 @@ Board.prototype.init = function (loader, piecestheme) {
 
     w_pawnlist = new PawnList(loader, 'white', pcsobj[10], pcsmtl[10]);
     b_pawnlist = new PawnList(loader, 'black', pcsobj[11], pcsmtl[11]);
-
+    
     pieceArray = [
         w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
         w_pawnlist[0], w_pawnlist[1], w_pawnlist[2], w_pawnlist[3], w_pawnlist[4], w_pawnlist[5], w_pawnlist[6], w_pawnlist[7],
@@ -145,14 +145,14 @@ Board.prototype.init = function (loader, piecestheme) {
         b_pawnlist[7], b_pawnlist[6], b_pawnlist[5], b_pawnlist[4], b_pawnlist[3], b_pawnlist[2], b_pawnlist[1], b_pawnlist[0],
         b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook
     ];
+
 };
 
 // Incrementally moves piece from fw, fx to fy, fz
 Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
     if (pieceArray[(fz-1)*8+(fy-97)] != 1)
         remove(fy, fz);
-
-    pieceArray[(fx-1)*8+(fw-97)].translateY(fheight);
+    pieceArray[(fx-1)*8+(fw-97)].position.y = fheight;
 
     //pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
     //pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);

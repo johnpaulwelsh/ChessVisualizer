@@ -1,3 +1,5 @@
+// John Sullivan and John Paul Welsh
+
 var Bishop = function (loader, piecestheme, color, side, obj, mtl) {
     self = this;
     self.init(loader, piecestheme, color, side, obj, mtl);

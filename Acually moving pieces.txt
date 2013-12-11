@@ -4,7 +4,7 @@ Acually moving pieces
 
 
 
-//function to move pieces
+//function to move pieces. Borked version
 function move(fw, fx, fy, fz, fheight)
 {
 	if (pieceArray[(fy-64)*8+fz]!=1)
@@ -18,16 +18,31 @@ function move(fw, fx, fy, fz, fheight)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 //iterates through the array read from the server and makes each move.
 //no more than one move a second
+
+
+var count = 0;
 for (String s : moves)
 {
 	setTimeout(function(){
-		var p=s.charCodeAt(0);
-		var w=s.charCodeAt(1);
-		var x=s.charCodeAt(2);
-		var y=s.charCodeAt(3);
-		var z=s.charCodeAt(4);
+		var s = moves[0];
+        var p = s.charCodeAt(0);
+        var w = s.charCodeAt(1);
+        var x = s.charAt(2);
+        var y = s.charCodeAt(3);
+        var z = s.charAt(4);
 		if (p==75 && Math.abs(x-z)==2)
 			move(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
 		if (p==78)
@@ -35,8 +50,46 @@ for (String s : moves)
 		else
 			move(w, x, y, z, 0);
 
-	}, 1000);	
+	}, 5000);
+	count++;	
 }
+
+
+
+
+//to be called once we have already iterated through the original.
+//Perhaps it would be better to just use this overall.
+
+setInterval(function(){
+	$.getJSON(gameID, function(resp){
+		$.each( resp, function( key, value ) 
+		{
+			if (key=="moves")
+				moves=value[0].split(",");
+			for(;count<moves.length;count++)
+			{
+				var s= moves[count];
+				setTimeout(function()
+				{
+        			var p = s.charCodeAt(0);
+        			var w = s.charCodeAt(1);
+        			var x = s.charAt(2);
+        			var y = s.charCodeAt(3);
+        			var z = s.charAt(4);
+        			if (p==75 && Math.abs(x-z)==2)
+						move(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
+					if (p==78)
+						move(w,x,y,z,25);
+					else
+						move(w, x, y, z, 0);
+
+				}, 1000);
+			}
+		})
+	});
+}, 3000);
+
+
 
 
 Storing pieces
