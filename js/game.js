@@ -140,8 +140,8 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
 
     // Waits 2 seconds before it moves pieces, so the user gets to see it
     setTimeout(function() {
- //       setInterval(function(){myTimer()},33);
- //       var timer= function myTimer{
+//        var timer= setInterval(function(){myTimer()},33);
+//        function myTimer{
         for (var i = 0; i < movesArray.length; i++) {
                     // If the array index is an even number, it's white's turn
                     // Since we do not have smooth animation, this will blink to the perspective
@@ -161,8 +161,8 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
                     var y = s.charCodeAt(3);
                     var z = s.charAt(4);
                     // The king is moving two spaces, so we know he is castling
-                    if (p == 75 && Math.abs(x-z) == 2)
-                        movePiece(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
+                    if (p == 75 && Math.abs(w-y) == 2)
+                        movePiece((100.5+1.75*(y-w)), z, (y-w)/2+w, z, 25);
                     
                     // The piece is a knight, so we know it has to jump
                     if (p == 78)
@@ -171,9 +171,9 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
                     else
                         movePiece(w, x, y, z, 0);
                     
-//                    if (i===movesArray.length)
-//                        clearInterval(timer);
-//                } 
+                //     if (i===movesArray.length)
+                //         clearInterval(timer);
+                // } 
         }
     }, 3000);
 

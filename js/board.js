@@ -214,7 +214,7 @@ Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
     pieceArray[(fx-1)*8+(fw-97)].moveZ((fx-fz)*100/7);
     pieceArray[(fx-1)*8+(fw-97)].moveY(-fheight);
 
-    pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fx-1)*8+(fw-97)]; // this son of a bitch was still wrong
+    pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fx-1)*8+(fw-97)];
     
     pieceArray[(fx-1)*8+(fw-97)] = 1;
 
