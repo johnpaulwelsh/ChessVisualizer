@@ -17,24 +17,65 @@
         <script src="lib/stats.min.js"></script>
         <script src="lib/dat.gui.js"></script>
         <script src="lib/jquery.js"></script>
+        
         <script src="js/game.js"></script>
         <script src="js/loadgame.js"></script>
         <script src="js/board.js"></script>
-        <script src="js/bishop.js"></script>
-        <script src="js/rook.js"></script>
-        <script src="js/knight.js"></script>
-        <script src="js/queen.js"></script>
-        <script src="js/king.js"></script>
-        <script src="js/pawnlist.js"></script>
+
+        <!--White Pieces-->
+        <script src="js/wking.js"></script>
+        <script src="js/wqueen.js"></script>
+
+        <script src="js/w_l_knight.js"></script>
+        <script src="js/w_r_knight.js"></script>
+
+        <script src="js/w_l_bishop.js"></script>
+        <script src="js/w_r_bishop.js"></script>
+
+        <script src="js/w_l_rook.js"></script>
+        <script src="js/w_r_rook.js"></script>
+
+        <script src="js/wpawn0.js"></script>
+        <script src="js/wpawn1.js"></script>
+        <script src="js/wpawn2.js"></script>
+        <script src="js/wpawn3.js"></script>
+        <script src="js/wpawn4.js"></script>
+        <script src="js/wpawn5.js"></script>
+        <script src="js/wpawn6.js"></script>
+        <script src="js/wpawn7.js"></script>
+
+        <!--Black Pieces-->
+        <script src="js/bking.js"></script>
+        <script src="js/bqueen.js"></script>
+
+        <script src="js/b_l_knight.js"></script>
+        <script src="js/b_r_knight.js"></script>
+
+        <script src="js/b_l_bishop.js"></script>
+        <script src="js/b_r_bishop.js"></script>
+
+        <script src="js/b_l_rook.js"></script>
+        <script src="js/b_r_rook.js"></script>
+
+        <script src="js/bpawn0.js"></script>
+        <script src="js/bpawn1.js"></script>
+        <script src="js/bpawn2.js"></script>
+        <script src="js/bpawn3.js"></script>
+        <script src="js/bpawn4.js"></script>
+        <script src="js/bpawn5.js"></script>
+        <script src="js/bpawn6.js"></script>
+        <script src="js/bpawn7.js"></script>
+
 
         <script>
+            // Gets information from text box and radio button and sends info to LoadGame
             function sendGameID(formdata) {
                 var sgID = document.userform.shortGameID.value;
                 var piecestheme = get_radio_value();
                 var lg = new LoadGame(sgID, piecestheme);
             }
 
-            // Adapted from...
+            // Adapted from
             // http://www.webdevelopersnotes.com/tips/html/finding_the_value_of_a_radio_button.php3
             function get_radio_value() {
                 for (var i=0; i < document.userform.piecestheme.length; i++) {
@@ -56,5 +97,6 @@
         <br>
         <button type="button" onclick="sendGameID(this.form)">Submit</button>
         </form>
+        
     </body>
 </html>

@@ -2,20 +2,23 @@
 
 var self;
 
+// Variable for loaded board object
 var piece_board;
 
-var w_king, w_queen, w_l_bishop, w_r_bishop, w_l_knight, w_r_knight, w_l_rook, w_r_rook;
-//var w_pawns = [];
-var b_king, b_queen, b_l_bishop, b_r_bishop, b_l_knight, b_r_knight, b_l_rook, b_r_rook;
-//var b_pawns = [];
-var w_pawnlist;
-var b_pawnlist;
+// Variables for each piece on the board
+var piece_w_king, piece_w_queen, piece_w_l_bishop, piece_w_r_bishop, piece_w_l_knight, piece_w_r_knight, piece_w_l_rook, piece_w_r_rook;
+var piece_b_king, piece_b_queen, piece_b_l_bishop, piece_b_r_bishop, piece_b_l_knight, piece_b_r_knight, piece_b_l_rook, piece_b_r_rook;
+var piece_w_pawn0, piece_w_pawn1, piece_w_pawn2, piece_w_pawn3, piece_w_pawn4, piece_w_pawn5, piece_w_pawn6, piece_w_pawn7;
+var piece_b_pawn0, piece_b_pawn1, piece_b_pawn2, piece_b_pawn3, piece_b_pawn4, piece_b_pawn5, piece_b_pawn6, piece_b_pawn7;
 
+// Get set to either the monkey set or second set in the constructor
 var pcsobj;
 var pcsmtl;
 
+// Holds the pieces and updates when the pieces move
 var pieceArray = [];
 
+// Variable lists to store filepaths for the .obj and .mtl files
 var monkeypcsobj = [
     'objects/monkey/whitebishop.obj',
     'objects/monkey/blackbishop.obj',
@@ -110,55 +113,68 @@ Board.prototype.init = function (loader, piecestheme) {
     });
 
     game.add(piece_board);
+    
+    piece_w_l_bishop = new W_L_Bishop(loader, pcsobj[0], pcsmtl[0]);
+    piece_w_r_bishop = new W_R_Bishop(loader, pcsobj[0], pcsmtl[0]);
+    piece_b_l_bishop = new B_L_Bishop(loader, pcsobj[1], pcsmtl[1]);
+    piece_b_r_bishop = new B_R_Bishop(loader, pcsobj[1], pcsmtl[1]);
 
-    w_l_bishop = new Bishop(loader, piecestheme, 'white', 'left', pcsobj[0], pcsmtl[0]);
-    w_r_bishop = new Bishop(loader, piecestheme, 'white', 'right', pcsobj[0], pcsmtl[0]);
-    b_l_bishop = new Bishop(loader, piecestheme, 'black', 'left', pcsobj[1], pcsmtl[1]);
-    b_r_bishop = new Bishop(loader, piecestheme, 'black', 'right', pcsobj[1], pcsmtl[1]);
+    piece_w_l_rook = new W_L_Rook(loader, pcsobj[2], pcsmtl[2]);
+    piece_w_r_rook = new W_R_Rook(loader, pcsobj[2], pcsmtl[2]);
+    piece_b_l_rook = new B_L_Rook(loader, pcsobj[3], pcsmtl[3]);
+    piece_b_r_rook = new B_R_Rook(loader, pcsobj[3], pcsmtl[3]);
 
-    w_l_rook = new Rook(loader, piecestheme, 'white', 'left', pcsobj[2], pcsmtl[2]);
-    w_r_rook = new Rook(loader, piecestheme, 'white', 'right', pcsobj[2], pcsmtl[2]);
-    b_l_rook = new Rook(loader, piecestheme, 'black', 'left', pcsobj[3], pcsmtl[3]);
-    b_r_rook = new Rook(loader, piecestheme, 'black', 'right', pcsobj[3], pcsmtl[3]);
+    piece_w_king = new W_King(loader, pcsobj[4], pcsmtl[4]);
+    piece_b_king = new B_King(loader, pcsobj[5], pcsmtl[5]);
 
-    w_king = new King(loader, piecestheme, 'white', pcsobj[4], pcsmtl[4]);
-    b_king = new King(loader, piecestheme, 'black', pcsobj[5], pcsmtl[5]);
+    piece_w_queen = new W_Queen(loader, pcsobj[6], pcsmtl[6]);
+    piece_b_queen = new B_Queen(loader, pcsobj[7], pcsmtl[7]);
 
-    w_queen = new Queen(loader, piecestheme, 'white', pcsobj[6], pcsmtl[6]);
-    b_queen = new Queen(loader, piecestheme, 'black', pcsobj[7], pcsmtl[7]);
+    piece_w_l_knight = new W_L_Knight(loader, pcsobj[8], pcsmtl[8]);
+    piece_w_r_knight = new W_R_Knight(loader, pcsobj[8], pcsmtl[8]);
+    piece_b_l_knight = new B_L_Knight(loader, pcsobj[9], pcsmtl[9]);
+    piece_b_r_knight = new B_R_Knight(loader, pcsobj[9], pcsmtl[9]);
 
-    w_l_knight = new Knight(loader, piecestheme, 'white', 'left', pcsobj[8], pcsmtl[8]);
-    w_r_knight = new Knight(loader, piecestheme, 'white', 'right', pcsobj[8], pcsmtl[8]);
-    b_l_knight = new Knight(loader, piecestheme, 'black', 'left', pcsobj[9], pcsmtl[9]);
-    b_r_knight = new Knight(loader, piecestheme, 'black', 'right', pcsobj[9], pcsmtl[9]);
+    piece_w_pawn0 = new W_Pawn0(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn1 = new W_Pawn1(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn2 = new W_Pawn2(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn3 = new W_Pawn3(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn4 = new W_Pawn4(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn5 = new W_Pawn5(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn6 = new W_Pawn6(loader, pcsobj[10], pcsmtl[10]);
+    piece_w_pawn7 = new W_Pawn7(loader, pcsobj[10], pcsmtl[10]);
 
-    w_pawnlist = new PawnList(loader, 'white', pcsobj[10], pcsmtl[10]);
-    b_pawnlist = new PawnList(loader, 'black', pcsobj[11], pcsmtl[11]);
+    piece_b_pawn0 = new B_Pawn0(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn1 = new B_Pawn1(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn2 = new B_Pawn2(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn3 = new B_Pawn3(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn4 = new B_Pawn4(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn5 = new B_Pawn5(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn6 = new B_Pawn6(loader, pcsobj[11], pcsmtl[11]);
+    piece_b_pawn7 = new B_Pawn7(loader, pcsobj[11], pcsmtl[11]);
     
     pieceArray = [
-        w_l_rook, w_l_knight, w_l_bishop, w_queen, w_king, w_r_bishop, w_r_knight, w_r_rook,
-        w_pawnlist[0], w_pawnlist[1], w_pawnlist[2], w_pawnlist[3], w_pawnlist[4], w_pawnlist[5], w_pawnlist[6], w_pawnlist[7],
+        piece_w_l_rook, piece_w_l_knight, piece_w_l_bishop, piece_w_queen, piece_w_king, piece_w_r_bishop, piece_w_r_knight, piece_w_r_rook,
+        piece_w_pawn0, piece_w_pawn1, piece_w_pawn2, piece_w_pawn3, piece_w_pawn4, piece_w_pawn5, piece_w_pawn6, piece_w_pawn7,
         1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1,
-        b_pawnlist[7], b_pawnlist[6], b_pawnlist[5], b_pawnlist[4], b_pawnlist[3], b_pawnlist[2], b_pawnlist[1], b_pawnlist[0],
-        b_r_rook, b_r_knight, b_r_bishop, b_queen, b_king, b_l_bishop, b_l_knight, b_l_rook
+        piece_b_pawn7, piece_b_pawn6, piece_b_pawn5, piece_b_pawn4, piece_b_pawn3, piece_b_pawn2, piece_b_pawn1, piece_b_pawn0,
+        piece_b_r_rook, piece_b_r_knight, piece_b_r_bishop, piece_b_queen, piece_b_king, piece_b_l_bishop, piece_b_l_knight, piece_b_l_rook
     ];
-
 };
 
 // Incrementally moves piece from fw, fx to fy, fz
 Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
     if (pieceArray[(fz-1)*8+(fy-97)] != 1)
         remove(fy, fz);
-    pieceArray[(fx-1)*8+(fw-97)].position.y = fheight;
-
-    //pieceArray[(fw-64)*8+fx].translateX((fy-fw)*100/7);
-    //pieceArray[(fw-64)*8+fx].translateZ((fz-fx)*100/7);
-    //pieceArray[(fw-64)*8+fx].translateY(-fheight);
-    //pieceArray[(fy-64)*8+fz] = pieceArray[(fw-64)*8+fx];
-    //pieceArray[(fw-64)*8+fx] = 1;
+    pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
+    pieceArray[(fx-1)*8+(fw-97)].moveX((fy-fw)*100/7);
+    pieceArray[(fx-1)*8+(fw-97)].moveZ((fz-fx)*100/7);
+    pieceArray[(fx-1)*8+(fw-97)].moveY(-fheight);
+    pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fw-64)*8+fx];
+    pieceArray[(fx-1)*8+(fw-97)] = 1;
 }
 
 function remove(fy, fz) {

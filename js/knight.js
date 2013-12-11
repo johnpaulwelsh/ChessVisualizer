@@ -1,11 +1,11 @@
 // John Sullivan and John Paul Welsh
 
-var Knight = function (loader, piecestheme, color, side, obj, mtl) {
+var Knight = function (loader, obj, mtl) {
     self = this;
-    self.init(loader, piecestheme, color, side, obj, mtl);
+    self.init(loader, obj, mtl);
 }
 
-Knight.prototype.init = function (loader, piecestheme, color, side, obj, mtl) {
+Knight.prototype.init = function (loader, obj, mtl) {
     
     if (color == 'white') {
         loader.load(obj, mtl, function (object) {

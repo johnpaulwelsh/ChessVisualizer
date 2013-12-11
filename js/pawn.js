@@ -1,3 +1,5 @@
+// John Sullivan and John Paul Welsh
+
 var piece_pawn;
 
 var Pawn = function (loader, piecestheme, color, position, obj, mtl) {
