@@ -8,9 +8,6 @@ var cameraAngle;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-// Boolean that allows us to continue incementing our movement until we're done
-var moving = false;
-
 // Constructor: initializes a new ChessGame object
 var ChessGame = function (piecestheme, lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
     self = this;
@@ -97,19 +94,23 @@ function onWindowResize() {
 }
 
 /*
+UNUSED VERSION OF READMOVES, THAT CONTINUOUSLY CALLS THE SERVER
 // Iterates through the array read from the server and makes each move.
 // No more than one move a second
 function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
+    var movesString = moves.toString();
+    var movesArray = movesString.split(',');
     
     // To be called once we have already iterated through the original
-    // Perhaps it would be better to just use this overall
     setInterval(function(){
         $.getJSON(gameID, function(resp){
             $.each( resp, function( key, value ) {
                 if (key=="moves")
-                    moves=value[0].split(",");
-                for(;count<moves.length;count++) {
-                    var s= moves[count];
+                    moves = value;
+                    movesString = moves.toString();
+                    movesArray = movesString.split(',');
+                for (var count = 0; count<moves.length; count++) {
+                    var s = moves[count];
                     setTimeout(function() {
                         var p = s.charCodeAt(0);
                         var w = s.charCodeAt(1);
@@ -117,11 +118,11 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
                         var y = s.charCodeAt(3);
                         var z = s.charAt(4);
                         if (p==75 && Math.abs(x-z)==2)
-                            move(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
+                            movePiece(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
                         if (p==78)
-                            move(w,x,y,z,25);
+                            movePiece(w,x,y,z,25);
                         else
-                            move(w, x, y, z, 0);
+                            movePiece(w, x, y, z, 0);
                     }, 1000);
                 }
             })
@@ -132,29 +133,55 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
 */
 
 function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, whitetime) {
-    //for (var i = 0; i < moves.length; i++)
-    //for (s in moves) {
-        setTimeout(function() {
-            var s = moves[1];
-            console.log(s);
-            var p = s.charCodeAt(0);
-            var w = s.charCodeAt(1);
-            var x = s.charAt(2);
-            var y = s.charCodeAt(3);
-            var z = s.charAt(4);
-            
-            // The king is moving two spaces, so we know he is castling
-            if (p == 75 && Math.abs(x-z) == 2)
-                movePiece(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
-            
-            // The piece is a knight, so we know it has to jump
-            if (p == 78)
-                movePiece(w, x, y ,z, 25);
-            // Any other piece does not have to jump
-            else
-                movePiece(w, x, y, z, 0);
-        }, 2000);
-    //}
+    var movesString = moves.toString();
+    var movesArray = movesString.split(',');
+
+    console.log(movesArray);
+
+    // Waits 2 seconds before it moves pieces, so the user gets to see it
+    setTimeout(function() {
+ //       setInterval(function(){myTimer()},33);
+ //       var timer= function myTimer{
+        for (var i = 0; i < movesArray.length; i++) {
+                    // If the array index is an even number, it's white's turn
+                    // Since we do not have smooth animation, this will blink to the perspective
+                    // of the last player to make a move
+                    if (i % 2 == 0) {
+                        camera.position.z = 70;
+                        camera.position.y = 70;
+                    } else {
+                        camera.position.z = -90;
+                        camera.position.y = 90;
+                    }
+                    
+                    var s = movesArray[i];
+                    var p = s.charCodeAt(0);
+                    var w = s.charCodeAt(1);
+                    var x = s.charAt(2);
+                    var y = s.charCodeAt(3);
+                    var z = s.charAt(4);
+                    // The king is moving two spaces, so we know he is castling
+                    if (p == 75 && Math.abs(x-z) == 2)
+                        movePiece(w, (4.5+1.75*(z-x)), w, (z-x)/2+x, 25);
+                    
+                    // The piece is a knight, so we know it has to jump
+                    if (p == 78)
+                        movePiece(w, x, y, z, 25);
+                    // Any other piece does not have to jump
+                    else
+                        movePiece(w, x, y, z, 0);
+                    
+//                    if (i===movesArray.length)
+//                        clearInterval(timer);
+//                } 
+        }
+    }, 3000);
+
+    setTimeout(function() {
+        if (gameover == "true" || gameover == true) {
+            window.alert("Game over! Thanks for playing!");
+        }
+    }, 7000);
 }
 
 // Function to move pieces

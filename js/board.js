@@ -114,6 +114,7 @@ Board.prototype.init = function (loader, piecestheme) {
 
     game.add(piece_board);
     
+    // Individually creates every piece on the board, loads them in, and positions them
     piece_w_l_bishop = new W_L_Bishop(loader, pcsobj[0], pcsmtl[0]);
     piece_w_r_bishop = new W_R_Bishop(loader, pcsobj[0], pcsmtl[0]);
     piece_b_l_bishop = new B_L_Bishop(loader, pcsobj[1], pcsmtl[1]);
@@ -153,6 +154,7 @@ Board.prototype.init = function (loader, piecestheme) {
     b_pawn6 = new B_Pawn6(loader, pcsobj[11], pcsmtl[11]);
     b_pawn7 = new B_Pawn7(loader, pcsobj[11], pcsmtl[11]);
     
+    // Array to represent every square on the board (1 means the space is empty)
     pieceArray = [
         piece_w_l_rook, piece_w_l_knight, piece_w_l_bishop, piece_w_queen, piece_w_king, piece_w_r_bishop, piece_w_r_knight, piece_w_r_rook,
         w_pawn0, w_pawn1, w_pawn2, w_pawn3, w_pawn4, w_pawn5, w_pawn6, w_pawn7,
@@ -167,16 +169,61 @@ Board.prototype.init = function (loader, piecestheme) {
 
 // Incrementally moves piece from fw, fx to fy, fz
 Board.prototype.movePiece = function (fw, fx, fy, fz, fheight) {
+
+    // If the space we are moving to has a piece (is not empty)
     if (pieceArray[(fz-1)*8+(fy-97)] != 1)
         remove(fy, fz);
+
+/*
+    // Moving up smoothly
+    var moveCount=0;
+    var timer=setInterval(function(){myTimer()},33);
+    function myTimer() {
+        pieceArray[(fx-1)*8+(fw-97)].moveY(fheight/6);
+        moveCount++;
+        if (moveCount=6)
+            clearInterval(timer);
+    }
+
+    // Moving over smoothly
+    moveCount=0;
+    var timerTwo=setInterval(function(){mySecondTimer()},33);
+    function mySecondTimer() {
+        pieceArray[(fx-1)*8+(fw-97)].moveX(((fy-fw)*100/7)/18);
+        pieceArray[(fx-1)*8+(fw-97)].moveZ(((fx-fz)*100/7)/18);
+        moveCount++;
+        if (moveCount=18)
+            clearInterval(timerTwo);
+    }
+
+    // Moving down smoothly
+    moveCount=0;
+    var timerThree=setInterval(function(){myThirdTimer()},33);
+    function myThirdTimer() {
+        pieceArray[(fx-1)*8+(fw-97)].moveY(-fheight/6);
+        moveCount++;
+        if (moveCount=6)
+            clearInterval(timerThree);
+    }
+    
+    moveCount=0;
+*/
+    
     pieceArray[(fx-1)*8+(fw-97)].moveY(fheight);
     pieceArray[(fx-1)*8+(fw-97)].moveX((fy-fw)*100/7);
     pieceArray[(fx-1)*8+(fw-97)].moveZ((fx-fz)*100/7);
     pieceArray[(fx-1)*8+(fw-97)].moveY(-fheight);
-    pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fw-64)*8+fx];
+
+    pieceArray[(fz-1)*8+(fy-97)] = pieceArray[(fx-1)*8+(fw-97)]; // this son of a bitch was still wrong
+    
     pieceArray[(fx-1)*8+(fw-97)] = 1;
+
+    console.log("move done");
 }
 
 function remove(fy, fz) {
-    console.log("Removed at " + fy + " " + fz);
+    pieceArray[(fz-1)*8+(fy-97)].moveY(-40);
+    pieceArray[(fz-1)*8+(fy-97)] = 1;
+
+    console.log("Removed at " + fy + ", " + fz);
 }

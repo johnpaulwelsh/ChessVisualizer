@@ -22,7 +22,6 @@ LoadGame.prototype.init = function (shortGameID, piecestheme) {
     // Appends game ID to prefix, creating a whole URL
     gameID = gameID + shortGameID;
 
-    // 
     $(document).ready(function() {
         // Using the core $.ajax() method
         $.getJSON(gameID, function(resp) {
@@ -38,7 +37,7 @@ LoadGame.prototype.init = function (shortGameID, piecestheme) {
                 if (key == "whitesturn")
                         whitesturn = value;
                 if (key == "moves")
-                        moves = value[0].split(",");
+                        moves = value;
                 if (key == "whitetime")
                         whitetime = value;
             })

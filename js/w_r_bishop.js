@@ -12,9 +12,9 @@ W_R_Bishop.prototype.init = function (loader, obj, mtl) {
     w_r_bishop = new THREE.Object3D();
 
     loader.load(obj, mtl, function (object) {
-        object.scale.x = 2;
-        object.scale.y = 3;
-        object.scale.z = 2;
+        object.scale.x = 3;
+        object.scale.y = 5;
+        object.scale.z = 3;
 
         this_piece = object;
         w_r_bishop.add(this_piece);
