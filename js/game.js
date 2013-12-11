@@ -135,7 +135,7 @@ function readMoves(lastmovenumber, blacktime, gameover, whitesturn, moves, white
     //for (var i = 0; i < moves.length; i++)
     //for (s in moves) {
         setTimeout(function() {
-            var s = moves[0];
+            var s = moves[1];
             console.log(s);
             var p = s.charCodeAt(0);
             var w = s.charCodeAt(1);

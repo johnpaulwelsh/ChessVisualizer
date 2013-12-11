@@ -1,0 +1,29 @@
+var moveCount=0;
+var timer=setInterval(function(){myTimer()},33)
+function myTimer()
+{
+	(INSERT_OBJECTS_HERE_OR_WHATEVER).moveY(fheight/6);
+	moveCount++;
+	if (moveCount=6)
+		clearInterval(timer);
+}
+moveCount=0;
+var timerTwo=setInterval(function(){mySecondTimer()},33)
+function mySecondTimer()
+{
+	(INSERT_OBJECTS_HERE_OR_WHATEVER).moveX(X_DISTANCE/18)
+	(INSERT_OBJECTS_HERE_OR_WHATEVER).moveZ(Z_DISTANCE/18)
+	moveCount++;
+	if (moveCount=18)
+		clearInterval(timerTwo);
+}
+moveCount=0;
+var timerThree=setInterval(function(){myThirdTimer()},33)
+function myThirdTimer()
+{
+	(INSERT_OBJECTS_HERE_OR_WHATEVER).moveY(-fheight/6)
+	moveCount++;
+	if (moveCount=6)
+		clearInterval(timerThree);
+}
+moveCount=0;
